@@ -9,9 +9,9 @@ avatarDesc: 前端 / javascript
 url: "https://mrfant.github.io/"
 
 # Comment
-comment:
+#comment:
     # disqus: leopard
-    duoshuo: leopard 
+    #duoshuo: leopard 
 
 # Social
 social:
