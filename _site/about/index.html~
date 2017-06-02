@@ -8,7 +8,7 @@
 
   <title>关于我</title>
   <meta name="description" content="欢迎来到我的个人站~">
-  <meta name="author" content="leopardpan">
+  <meta name="author" content="MrFant">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="关于我">
@@ -24,8 +24,8 @@
   <link rel="stylesheet" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://baixin.io/about/">
-  <link rel="alternate" type="application/rss+xml" title="Mr_Fant" href="http://baixin.io/feed.xml">
+  <link rel="canonical" href="https://mrfant.github.io/about/">
+  <link rel="alternate" type="application/rss+xml" title="Mr_Fant" href="https://mrfant.github.io/feed.xml">
   
   <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
 
@@ -110,12 +110,12 @@
                     <div class="info-back">
                         <h2> 
                             
-                                leopardpan
+                                MrFant
                             
                         </h2>
                         <p>
                            
-                                iOS / 机器学习
+                                python / 前端
                             
                         </p>
                     </div>
@@ -212,12 +212,12 @@
 
 <p> 
 
-博客源码在 <a target="_blank" href="https://github.com/leopardpan/leopardpan.github.io/">Github</a> 上，你的 Star 是我更新的动力，谢谢~
+博客源码在 <a target="_blank" href="https://github.com/MrFant/MrFant.github.io/">Github</a> 上，你的 Star 是我更新的动力，谢谢~
 <!--
 <section class="post-comments">
 
   
-    <div class="ds-thread" data-thread-key="/about/" data-title="关于我" data-url="http://baixin.io/about/"></div>
+    <div class="ds-thread" data-thread-key="/about/" data-title="关于我" data-url="https://mrfant.github.io/about/"></div>
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"leopard"};
@@ -253,7 +253,7 @@
           
           <!-- Weibo -->
           <li class="navigation__item_social">
-            <a href="http://weibo.com/5366874726" title="@5366874726 的微博" target="_blank">
+            <a href="http://weibo.com" title="MrFant 的微博" target="_blank">
               <i class='social fa fa-weibo fa-2x'></i>
               <span class="label">Weibo</span>
             </a>
@@ -263,7 +263,7 @@
           
           <!-- Github -->
           <li class="navigation__item_social">
-            <a href="https://github.com/leopardpan" title="@leopardpan 的 Github" target="_blank">
+            <a href="https://github.com/MrFant" title="@MrFant 的 Github" target="_blank">
               <i class='social fa fa-github fa-2x'></i>
               <span class="label">Github</span>
             </a>
@@ -285,7 +285,7 @@
           
           <!-- Email -->
           <li class="navigation__item_social">
-            <a href="mailto:leopardpan@icloud.com" title="Contact me">
+            <a href="mailto:MrFant@icloud.com" title="Contact me">
               <i class='social fa fa-envelope fa-2x'></i>
               <span class="label">Email</span>
             </a>
@@ -299,11 +299,11 @@
 
         <div class = "footer_div">  
            <p class="copyright text-muted">
-            Copyright &copy; Mr_Fant 2017 Theme by <a href="http://baixin.io/">leopardpan</a> |
+            Copyright &copy; Mr_Fant 2017 Theme by <a href="https://mrfant.github.io/">MrFant</a> |
             <iframe
                 style="margin-left: 2px; margin-bottom:-5px;"
                 frameborder="0" scrolling="0" width="91px" height="20px"
-                src="https://ghbtns.com/github-btn.html?user=leopardpan&repo=leopardpan.github.io&type=star&count=true" >
+                src="https://ghbtns.com/github-btn.html?user=MrFant&repo=MrFant.github.io&type=star&count=true" >
             </iframe>
             </p>
         	<div align="right">
