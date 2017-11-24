@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>MrFant</title>
-  <meta name="description" content="Why can&#39;t I ?">
+  <title>十六进制转十进制</title>
+  <meta name="description" content="十六进制转十进制">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html">
   <link rel="alternate" type="application/rss+xml" title="MrFant" href="/feed.xml">
   
   
@@ -67,38 +67,56 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  
-
-
-  <ul class="post-list">
-    
-      <li>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">十六进制转十进制</h1>
+    <p class="post-meta">
+      <time datetime="2017-11-24T17:19:52+08:00" itemprop="datePublished">
         
-        <span class="post-meta">Nov 24, 2017</span>
+        Nov 24, 2017
+      </time>
+      </p>
+  </header>
 
-        <h2>
-          <a class="post-link" href="/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html">十六进制转十进制</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Nov 24, 2017</span>
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="十六进制转十进制">十六进制转十进制</h1>
 
-        <h2>
-          <a class="post-link" href="/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86.html">十六进制转八进制之大数问题的处理</a>
-        </h2>
-      </li>
-    
-  </ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+<blockquote>
+  <p>问题描述</p>
 
-</div>
+  <p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
+　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p>
+</blockquote>
+
+<p><strong>code</strong>：</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> 
+<span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">value</span><span class="p">;</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">hex</span><span class="o">&gt;&gt;</span><span class="n">value</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">dec</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>题目本身不提，只是发现一个奇怪的情况：</p>
+
+<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code class="highlighter-rouge">value</code>变量是<code class="highlighter-rouge">Long</code>类型，然后惊奇地发现<code class="highlighter-rouge">Long</code>类型居然也无法容下这个四十亿的数，只有换成<code class="highlighter-rouge">unsigned Long</code>类型才能容纳。</p>
+
+<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
+
+<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
+
+  </div>
+
+  
+</article>
 
       </div>
     </main>
