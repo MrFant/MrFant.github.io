@@ -1,41 +1,73 @@
 # Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: MrFant
-email: yii.fant@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Why can't I ?
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-github_username:  MrFant
+# Website settings
+title: Yii.Fant
+description: fant's blog,use Jekyll and github pages.
+keywords: fant,yii,blog,Jekyll,github,gh-pages
+baseurl:  /fant # if you have suburl as homepage like '/homepage', please change it to '/homepage' and your repo's name should be 'homepage'
+url: https://mrfant.github.io/fant  # url should be 'http://<github_username>.github.io/homepage' as before
+# url: http://127.0.0.1:4000
+img_path: /fant/static/assets/img/blog  # url should be '/homepage/static/assets/img/blog' as before
+
+# author -- index page "about me" section
+author:  # change following line to your infomation.
+  name: Yii.Fant  # Be used at blog posts' author.
+  first_name: Fant  # Be used at index page about me section.
+  last_name: Yii  # Be used at index page about me section.
+  avatar: /static/assets/img/landing/avatar.jpg # upload your avatar at directory and edit it.
+  github_username: MrFant # Leave blank if you don't have now
+  linkedin_id: # Leave blank if you don't have now
+  facebook_username: # Leave blank if you don't have now
+  twitter_username: # Leave blank if you don't have now
+  email: Yii.fant@gmail.com  # Leave blank if you don't have now
+#  cv: http://cv.jarrekk.com  # An online CV can be printed as PDF, leave blank if you don't have now
+  # skill icons are on avatar's left and right side. Reference urls are http://fontawesome.io/ and http://fizzed.com/oss/font-mfizz
+  skill_icon1:
+    - name: icon-apache
+    - name: fa-linux
+  skill_icon2:
+    - name: icon-java
+    - name: icon-python
+  desc: Java Programmer , a rookie in web develope.  # Describe yourself.
+
+# comment
+disqus:  # if you wanna comment feature, go to https://disqus.com/ to get your configuration; if not, comment following two lines.
+  name: Fant
+
+# analytics
+## google analytics
+ga:  # if you wanna this feature, go to https://www.google.com/analytics/ to get your configuration; if not, comment following line.
+  id: UA-93473370-3
+
+## google optimize
+go:
+  # id:
+
+## growingIO
+gio:  # if you wanna this feature, go to https://www.growingio.com/ to get your configuration; if not, comment following line.
+  # id:
+
+#<!-- Optional JavaScript -->
+#    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+#    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+#    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+#    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+vdonationation: on  # type 'on'/'off' to choice display donation button at post page or not carouselsex_carousel: on  # index page carousel switch
+blog_carousel: on  # blog page carousel switch
+#donation: on
+# scss
+sass:
+  style: compressed
 
 # Build settings
-markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-feed
+encoding: utf-8
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# other settings
+highlighter: rouge
+markdown: kramdown
+# input: GFM allows me to use the same syntax for markdown files I’d use on GitHub
+# rouge is a syntax highlight tool based on ruby
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+

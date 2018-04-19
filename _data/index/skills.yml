@@ -1,0 +1,6 @@
+# skills section data
+
+label: Ability
+id : cs
+aspects: Java, C++, Python, Linux, BasketBall, H5+CSS3, GitHub
+percentage: 100, 35, 65, 80, 60, 40, 60
