@@ -1,7 +1,7 @@
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;unistd.h&gt;
 #include &lt;stdio.h&gt;
-</span><span class="c1">//可产生20个进程，包括main进程
-</span>
+</span><span class="c1">//可产生20个进程，包括main进程</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">fork</span><span class="p">();</span>
     <span class="n">fork</span><span class="p">()</span><span class="o">&amp;&amp;</span><span class="n">fork</span><span class="p">()</span><span class="o">||</span><span class="n">fork</span><span class="p">();</span>
