@@ -56,8 +56,8 @@ vdonationation: on  # type 'on'/'off' to choice display donation button at post 
 blog_carousel: on  # blog page carousel switch
 #donation: on
 # scss
-sass:
-  style: compressed
+#sass:
+#  style: compressed
 
 # Build settings
 encoding: utf-8

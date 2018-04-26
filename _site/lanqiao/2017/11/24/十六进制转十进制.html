@@ -1,4 +1,227 @@
-<html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1; minimum-scale=1; user-scalable=no;"> <meta name="author" content="Yii.Fant"> <meta name="baseurl" content="/fant"> <title> Yii.Fant|十六进制转十进制 </title> <!-- favicon --> <link rel="shortcut icon" href="/fant/static/assets/img/favicon.ico"> <!-- Main CSS --> <link href="/fant/static/assets/app-20180125.min.css" rel="stylesheet"> <link href="/fant/static/css/custom.css" rel="stylesheet"> <!-- Main Scripts --> <script src="/fant/static/assets/app-20180125.min.js"></script> <script src="/fant/static/assets/blog-20180125.min.js"></script> <!-- Google AdSense --> <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--> <!--<script>--> <!--(adsbygoogle = window.adsbygoogle || []).push({--> <!--google_ad_client: "ca-pub-6196184668650108",--> <!--enable_page_level_ads: true--> <!--});--> <!--</script>--> </head> <body id="page-top" class="landing-page"> <div class="search-tool" style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right: 0px; opacity: 0.95; background-color: #111111; z-index: 9999; display: none;"> <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px" placeholder="Search Blog"> <div style="position: fixed; top: 16px; right: 16px; z-index: 9999;"> <img src="/fant/static/assets/img/search/cb-close.png" id="close-btn"/> </div> </div> <div style="position: fixed; right: 16px; bottom: 20px; z-index: 9999;"> <img src="/fant/static/assets/img/search/cb-search.png" id="search-btn" title="Double click Ctrl"/> </div> <div class="navbar-wrapper"> <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> <div class="container"> <div class="navbar-header page-scroll"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="/fant/">Yii.Fant</a> </div> <div id="navbar" class="navbar-collapse collapse"> <ul class="nav navbar-nav navbar-right"> <li><a class="page-scroll" href="/fantblog/"></a></li> <li> <a class="page-scroll" href="/fant/blog/">Blog</a></li> <li> <a class="page-scroll" href="/fant/python/">Python</a></li> <li> <a class="page-scroll" href="/fant/linux/">Linux</a></li> <li> <a class="page-scroll" href="/fant/html/">HTML</a></li> <li> <a class="page-scroll" href="/fant/java/">Java</a></li> <li> <a class="page-scroll" href="/fant/mac/">Mac</a></li> <li> <a class="page-scroll" href="/fant/life/">Life</a></li> </ul> </div> </div> </nav> </div> <div id="inSlider" class="carousel carousel-fade" data-ride="carousel"> <ol class="carousel-indicators"> <li data-target="#inSlider" data-slide-to="0" class="active"></li> <li data-target="#inSlider" data-slide-to="1"></li> </ol> <div class="carousel-inner" role="listbox"> <div class="item active"> <div class="container"> <div class="carousel-caption"> </div> <div class="carousel-image wow zoomIn"> <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> --> </div> </div> <!-- Set background for slide in css --> <div class="header-back" style="background-image: url(/fant/static/assets/img/landing/header_one.jpg);" title="first banner image"> </div> </div> <div class="item"> <div class="container"> <div class="carousel-caption"> </div> <div class="carousel-image wow zoomIn"> <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> --> </div> </div> <!-- Set background for slide in css --> <div class="header-back" style="background-image: url(/fant/static/assets/img/landing/header_two.jpg);" title="second banner image"></div> </div> </div> <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#inSlider" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div> <div class="wrapper wrapper-content animated fadeInRight article"> <div class="row"> <div class="col-lg-10 col-lg-offset-1"> <div class="ibox"> <div class="ibox-content"> <div class="pull-right"> <a class="btn btn-white btn-xs" href="/fant/lanqiao">LanQiao</a> </div> <div class="text-center article-title"> <span class="text-muted"><i class="fa fa-clock-o"></i> 24 Nov 2017</span> <h1> 十六进制转十进制 </h1> </div> <h1 id="十六进制转十进制">十六进制转十进制</h1> <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p> <blockquote> <p>问题描述</p> <p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。 　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p> </blockquote> <p><strong>code</strong>：</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+<html lang="en">
+
+    
+        <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1; minimum-scale=1; user-scalable=no;">
+  
+  
+  <meta name="author" content="Yii.Fant">
+  <meta name="baseurl" content="">
+
+  <title>
+    
+        Yii.Fant|十六进制转十进制
+    
+  </title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/static/assets/img/favicon.ico">
+
+  <!-- Main CSS -->
+  <link href="/static/assets/app-20180125.min.css" rel="stylesheet">
+  <link href="/static/css/custom.css" rel="stylesheet">
+
+  <!-- Main Scripts -->
+  <script src="/static/assets/app-20180125.min.js"></script>
+  <script src="/static/assets/blog-20180125.min.js"></script>
+
+  <!-- Google AdSense -->
+  <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+  <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({-->
+      <!--google_ad_client: "ca-pub-6196184668650108",-->
+      <!--enable_page_level_ads: true-->
+    <!--});-->
+  <!--</script>-->
+</head>
+
+    
+
+<body id="page-top" class="landing-page">
+
+    
+        <div class="search-tool"
+      style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px; opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px" placeholder="Search Blog">
+
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 9999;">
+        <img src="/static/assets/img/search/cb-close.png" id="close-btn"/>
+    </div>
+</div>
+
+<div style="position: fixed; right: 16px; bottom: 20px; z-index: 9999;">
+    <img src="/static/assets/img/search/cb-search.png"  id="search-btn"  title="Double click Ctrl"/>
+</div>
+
+<div class="navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Yii.Fant</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="blog/"></a></li>
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/blog/">Blog</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/python/">Python</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/linux/">Linux</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/html/">HTML</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/java/">Java</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/mac/">Mac</a></li>
+                        
+                    
+                        
+
+                            
+                                <li>
+                            
+
+                            <a class="page-scroll" href="/life/">Life</a></li>
+                        
+                    
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#inSlider" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div
+            class="header-back"
+            style="background-image: url(/static/assets/img/landing/header_one.jpg);"
+            title="first banner image">
+            </div>
+        </div>
+
+        
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption">
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <!-- <img src="static/img/landing/laptop.png" alt="laptop"/> -->
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back" style="background-image: url(/static/assets/img/landing/header_two.jpg);" title="second banner image"></div>
+        </div>
+        
+
+    </div>
+    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+    
+
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	
+                        	<a class="btn btn-white btn-xs" href="/lanqiao">LanQiao</a>
+                        
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 24 Nov 2017</span>
+                        <h1>
+                            十六进制转十进制
+                        </h1>
+                    </div>
+                    	<h1 id="十六进制转十进制">十六进制转十进制</h1>
+
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
+
+<blockquote>
+  <p>问题描述</p>
+
+  <p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
+　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p>
+</blockquote>
+
+<p><strong>code</strong>：</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> 
 <span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
@@ -8,4 +231,115 @@
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre></div></div> <p>题目本身不提，只是发现一个奇怪的情况：</p> <p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code class="highlighter-rouge">value</code>变量是<code class="highlighter-rouge">Long</code>类型，然后惊奇地发现<code class="highlighter-rouge">Long</code>类型居然也无法容下这个四十亿的数，只有换成<code class="highlighter-rouge">unsigned Long</code>类型才能容纳。</p> <p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p> <p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p> <hr> <div class="row"> <div class="col-md-6"> <h5 style="display: inline;">Tags:</h5> </div> <div class="col-md-6"> <div class="small text-right"> <div> <i class="fa fa-comments-o"> </i> <span class="disqus-comment-count" data-disqus-url="http://localhost:4000/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html">0</span> comments </div> </div> </div> </div> <br> <div class="row"> <div class="col-lg-12"> <!-- donate --> <br> <!-- share --> <div class="a2a_kit a2a_kit_size_32 a2a_default_style"> <a class="a2a_dd" href="https://www.addtoany.com/share"></a> <a class="a2a_button_facebook"></a> <a class="a2a_button_twitter"></a> <a class="a2a_button_google_plus"></a> <a class="a2a_button_linkedin"></a> <a class="a2a_button_email"></a> <a class="a2a_button_wechat"></a> <a class="a2a_button_sina_weibo"></a> <a class="a2a_button_pocket"></a> </div> <script> var a2a_config = a2a_config || {}; a2a_config.color_main = "D7E5ED"; a2a_config.color_border = "AECADB"; a2a_config.color_link_text = "333333"; a2a_config.color_link_text_hover = "333333"; </script> <script async src="https://static.addtoany.com/menu/page.js"></script> <br> <!-- comment --> <div id="disqus_thread"></div> <script> /** * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS. * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */ /* var disqus_config = function () { this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable }; */ (function() { var d = document, s = d.createElement('script'); s.src = '//Fant.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })(); </script> <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> </div> </div> </div> </div> </div> </div> </div> <!-- Google analytics --> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-93473370-3', 'auto'); ga('require', ''); ga('send', 'pageview'); </script> <!-- GrowingIO --> <script id="dsq-count-scr" src="https://Fant.disqus.com/count.js" async></script> </body> </html>
+</code></pre></div></div>
+
+<p>题目本身不提，只是发现一个奇怪的情况：</p>
+
+<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code class="highlighter-rouge">value</code>变量是<code class="highlighter-rouge">Long</code>类型，然后惊奇地发现<code class="highlighter-rouge">Long</code>类型居然也无法容下这个四十亿的数，只有换成<code class="highlighter-rouge">unsigned Long</code>类型才能容纳。</p>
+
+<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
+
+<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <div>
+                                
+                                <i class="fa fa-comments-o"> </i> <span class="disqus-comment-count" data-disqus-url="https://mrfant.github.io//lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html">0</span> comments
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                            <br>
+                            <!-- share -->
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_google_plus"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_button_email"></a>
+<a class="a2a_button_wechat"></a>
+<a class="a2a_button_sina_weibo"></a>
+<a class="a2a_button_pocket"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.color_main = "D7E5ED";
+a2a_config.color_border = "AECADB";
+a2a_config.color_link_text = "333333";
+a2a_config.color_link_text_hover = "333333";
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+                            <br>
+                            <!-- comment -->
+                            
+<div id="disqus_thread"></div>
+<script>
+/** * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS. * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+	/*
+	var disqus_config = function () { this.page.url = PAGE_URL;
+	// Replace PAGE_URL with your page's canonical URL variable this.page.identifier = PAGE_IDENTIFIER;
+	// Replace PAGE_IDENTIFIER with your page's unique identifier variable };
+	*/
+	(function() {
+		var d = document, s = d.createElement('script');
+		s.src = '//Fant.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    
+        <!-- Google analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93473370-3', 'auto');
+    ga('require', '');
+    ga('send', 'pageview');
+
+  </script>
+
+
+<!-- GrowingIO -->
+
+
+
+
+<script id="dsq-count-scr" src="https://Fant.disqus.com/count.js" async></script>
+
+
+    
+
+</body>
+</html>

@@ -3,10 +3,10 @@
   <channel>
     <title>Yii.Fant</title>
     <description>fant's blog,use Jekyll and github pages.</description>
-    <link>http://localhost:4000/fant/</link>
-    <atom:link href="http://localhost:4000/fant/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Apr 2018 11:11:25 +0800</pubDate>
-    <lastBuildDate>Thu, 19 Apr 2018 11:11:25 +0800</lastBuildDate>
+    <link>https://mrfant.github.io//</link>
+    <atom:link href="https://mrfant.github.io//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 25 Apr 2018 20:27:55 +0800</pubDate>
+    <lastBuildDate>Wed, 25 Apr 2018 20:27:55 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -40,8 +40,8 @@ say_hello()   // &quot;hello world!&quot;
 &lt;p&gt;Side note comment: applied a bug fix similar to &lt;a href=&quot;https://github.com/Atlas7/atlas7.github.io/commit/6659f4a47f6ec66987adb0f683a9c6f3842252ae#diff-818954a41dbfb01af70050a459c603b9&quot;&gt;this commit&lt;/a&gt; to ensure code snippet does not collapse unexpectly upon clicking on it. This issue is tracked &lt;a href=&quot;https://github.com/jarrekk/Jalpc/issues/97&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 21 Dec 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/fant/html/2017/12/21/test-code-snippets.html</link>
-        <guid isPermaLink="true">http://localhost:4000/fant/html/2017/12/21/test-code-snippets.html</guid>
+        <link>https://mrfant.github.io//html/2017/12/21/test-code-snippets.html</link>
+        <guid isPermaLink="true">https://mrfant.github.io//html/2017/12/21/test-code-snippets.html</guid>
         
         <category>Jalpc</category>
         
@@ -69,8 +69,8 @@ say_hello()   // &quot;hello world!&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sat, 25 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/fant/2017/11/25/Unix-Fork%E5%87%BD%E6%95%B0.html</link>
-        <guid isPermaLink="true">http://localhost:4000/fant/2017/11/25/Unix-Fork%E5%87%BD%E6%95%B0.html</guid>
+        <link>https://mrfant.github.io//2017/11/25/Unix-Fork%E5%87%BD%E6%95%B0.html</link>
+        <guid isPermaLink="true">https://mrfant.github.io//2017/11/25/Unix-Fork%E5%87%BD%E6%95%B0.html</guid>
         
         
       </item>
@@ -111,8 +111,8 @@ say_hello()   // &quot;hello world!&quot;
 &lt;p&gt;这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。&lt;/p&gt;
 </description>
         <pubDate>Fri, 24 Nov 2017 17:19:52 +0800</pubDate>
-        <link>http://localhost:4000/fant/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html</link>
-        <guid isPermaLink="true">http://localhost:4000/fant/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html</guid>
+        <link>https://mrfant.github.io//lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html</link>
+        <guid isPermaLink="true">https://mrfant.github.io//lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6.html</guid>
         
         
         <category>LanQiao</category>
@@ -301,8 +301,8 @@ say_hello()   // &quot;hello world!&quot;
 &lt;p&gt;3、对本题方法一中的str.Length() 的 i为int型有点疑惑，因为之前总结出的蓝桥杯的编译系统为8位或16位，int类型应该存储不下十万这么大的数才对，但此处证明可以，有些疑惑，先挖个坑，到时候填。。。。。。。&lt;/p&gt;
 </description>
         <pubDate>Fri, 24 Nov 2017 17:19:52 +0800</pubDate>
-        <link>http://localhost:4000/fant/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86.html</link>
-        <guid isPermaLink="true">http://localhost:4000/fant/lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86.html</guid>
+        <link>https://mrfant.github.io//lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86.html</link>
+        <guid isPermaLink="true">https://mrfant.github.io//lanqiao/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86.html</guid>
         
         
         <category>LanQiao</category>
@@ -356,8 +356,8 @@ say_hello()   // &quot;hello world!&quot;
 &lt;p&gt;If you like this repository, I appreciate you star this repository. Please don’t hesitate to mail me or post issues on GitHub if you have any questions. Hope you have a happy blog time!😊&lt;/p&gt;
 </description>
         <pubDate>Tue, 31 Jan 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/fant/html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</link>
-        <guid isPermaLink="true">http://localhost:4000/fant/html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</guid>
+        <link>https://mrfant.github.io//html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</link>
+        <guid isPermaLink="true">https://mrfant.github.io//html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html</guid>
         
         <category>Jalpc</category>
         
