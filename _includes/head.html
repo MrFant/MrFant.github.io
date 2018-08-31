@@ -1,40 +1,46 @@
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1; minimum-scale=1; user-scalable=no;">
-  {% if page.desc %}
-    <meta content="{{ page.desc }}" name="description">
-  {% endif %}
-  {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords }}">
-  {% endif %}
-  <meta name="author" content="{{ site.author.name }}">
-  <meta name="baseurl" content="{{ site.baseurl }}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-  <title>
-    {% if page.title != "index" %}
-        {{ site.title }}|{{ page.title }}
-    {% else %}
-        {{ site.title }}
-    {% endif %}
-  </title>
-  <!-- favicon -->
-  <link rel="shortcut icon" href="{{ '/static/assets/img/favicon.ico' | prepend: site.baseurl }}">
+{%- include snippets/page-title.html -%}
+<title>{%- if __return -%}{{ __return }} - {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}</title>
 
-  <!-- Main CSS -->
-  <link href="{{ '/static/assets/app-20180125.min.css' | prepend: site.baseurl }}" rel="stylesheet">
-  <link href="{{ '/static/css/custom.css' | prepend: site.baseurl }}" rel="stylesheet">
+<meta name="description" content="{%- if page.excerpt -%}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{%- else -%}{{ site.description }}{%- endif -%}">
+<link rel="canonical" href="{%- include snippets/page-url.html -%}">
 
-  <!-- Main Scripts -->
-  <script src="{{'/static/assets/app-20180125.min.js'| prepend: site.baseurl }}"></script>
-  <script src="{{'/static/assets/blog-20180125.min.js'| prepend: site.baseurl }}"></script>
+{%- assign _paths_rss = site.paths.rss | default: site.data.variables.default.paths.rss -%}
+{%- include snippets/get-nav-url.html path=_paths_rss -%}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ __return }}">
+<!-- begin favicon -->
+{%- include snippets/prepend-baseurl.html path='/assets/apple-touch-icon.png' -%}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ __return }}">
 
-  <!-- Google AdSense -->
-  <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
-  <!--<script>-->
-    <!--(adsbygoogle = window.adsbygoogle || []).push({-->
-      <!--google_ad_client: "ca-pub-6196184668650108",-->
-      <!--enable_page_level_ads: true-->
-    <!--});-->
-  <!--</script>-->
-</head>
+{%- include snippets/prepend-baseurl.html path='/assets/favicon-32x32.png' -%}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ __return }}">
+
+{%- include snippets/prepend-baseurl.html path='/assets/favicon-16x16.png' -%}
+<link rel="icon" type="image/png" sizes="16x16" href="{{ __return }}">
+
+{%- include snippets/prepend-baseurl.html path='/assets/site.webmanifest' -%}
+<link rel="manifest" href="{{ __return }}">
+
+{%- include snippets/prepend-baseurl.html path='/assets/safari-pinned-tab.svg' -%}
+<link rel="mask-icon" href="{{ __return }}" color="#fc4d50">
+
+{%- include snippets/prepend-baseurl.html path='/assets/favicon.ico' -%}
+<link rel="shortcut icon" href="{{ __return }}">
+
+<meta name="msapplication-TileColor" content="#ffc40d">
+
+{%- include snippets/prepend-baseurl.html path='/assets/browserconfig.xml' -%}
+<meta name="msapplication-config" content="{{ __return }}">
+
+<meta name="theme-color" content="#ffffff">
+<!-- end favicon -->
+
+{%- include snippets/prepend-baseurl.html path='/assets/css/main.css' -%}
+<link rel="stylesheet" href="{{ __return }}">
+
+{%- include snippets/get-sources.html -%}
+{%- assign _sources = __return -%}
+<link rel="stylesheet" href="{{ _sources.font_awesome }}" >
