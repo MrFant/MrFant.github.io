@@ -191,5 +191,5 @@ plugins:
   - jekyll-sitemap
   - jemoji
 
-  ImagePath: https://MrFant.github.io/assets/images/evernote
+ImagePath: https://MrFant.github.io/assets/images/evernote
     
