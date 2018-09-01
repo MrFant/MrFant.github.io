@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Php | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/php/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-01T21:20:44+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Server 超级全局变量表]]></title>
+    <link href="https://mrfant.github.io/blog/2018/08/28/server%E8%B6%85%E7%BA%A7%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A1%A8/"/>
+    <updated>2018-08-28T00:00:00+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/08/28/server超级全局变量表</id>
+    <content type="html"><![CDATA[<p><img src="https://i.loli.net/2018/09/01/5b8a803319eb0.jpg" alt="" /></p>
+
+<!-- more -->
+
+]]></content>
+  </entry>
+  
+</feed>

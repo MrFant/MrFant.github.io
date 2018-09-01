@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>YII Fant's Blog</title>
+  <title>深入理解JQuery中的on方法(事件委派机制) - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content=" ">
+  <meta name="description" content="参考博客：https://segmentfault.com/a/1190000006652120 抛出问题： jquery on()方法和click()等绑定事件监听函数的方法有什么区别? demo： 以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -83,50 +83,14 @@
 </nav>
   <div id="main">
     <div id="content">
-          <div class="blog-index">
+          <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2018/08/28/server%E8%B6%85%E7%BA%A7%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A1%A8/">Server 超级全局变量表</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2018-08-28T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="https://i.loli.net/2018/09/01/5b8a803319eb0.jpg" alt="" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2018/08/28/server%E8%B6%85%E7%BA%A7%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A1%A8/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/">深入理解JQuery中的on方法(事件委派机制)</a></h1>
+        <h1 class="entry-title">深入理解JQuery中的on方法(事件委派机制)</h1>
+      
     
     
       <p class="meta">
@@ -143,7 +107,7 @@
   </header>
 
 
-  <div class="entry-content"><p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
+<div class="entry-content"><p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
 
 <h2>抛出问题：</h2>
 
@@ -192,215 +156,75 @@
 
 
 
+<!-- more -->
+
+
+<h2>结论：</h2>
+
+<p>二者在绑定<strong>静态控件</strong>时没有区别，<em>但是</em>如果面对动态产生的控件，只有on()能成功的绑定到<strong>动态控件</strong>中。
+{:.info}</p>
+
+<h2>拓展</h2>
+
+<p>许多项目在前后端交互时都采用ajax或pjax等技术动态添加新的控件。在这种情况下，就必须使用on（）方法来为新添加的元素绑定事件监听函数。
+具体见参考博客</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Yii
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jquery/'>jquery</a>
+  
+</span>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/">大数阶乘问题及内存分配的堆和栈区别</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>问题描述：</h2>
-
-<blockquote><p>问题描述</p>
-
-<p>　　输入一个正整数<em>n</em>，输出<em>n</em>!的值。
-　　其中<em>n</em>!=1<em>2</em>3<em>…**n</em>。</p>
-
-<p>算法描述</p>
-
-<p>　　<em>n</em>!可能很大，而计算机能表示的整数范围有限，需要使用高精度计算的方法。使用一个数组<em>A</em>来表示一个大整数<em>a</em>，<em>A</em>[0]表示<em>a</em>的个位，<em>A</em>[1]表示<em>a</em>的十位，依次类推。
-　　将<em>a</em>乘以一个整数<em>k</em>变为将数组<em>A</em>的每一个元素都乘以<em>k</em>，请注意处理相应的进位。
-　　首先将<em>a</em>设为1，然后乘2，乘3，当乘到<em>n</em>时，即得到了<em>n</em>!的值。</p></blockquote>
-
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6/">十六进制转十进制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
-
-<blockquote><p>问题描述</p>
-
-<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Previous Post: 大数阶乘问题及内存分配的堆和栈区别">&laquo; 大数阶乘问题及内存分配的堆和栈区别</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86/">十六进制转八进制之大数问题的处理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p><strong>问题描述</strong>
-　　给定n个十六进制正整数，输出它们对应的八进制数。</p>
-
-<p><strong>输入格式</strong>
-　　输入的第一行为一个正整数n （1&lt;=n&lt;=10）。
-　　接下来n行，每行一个由0~9、大写字母A~F组成的字符串，表示要转换的十六进制正整数，每个十六进制数长度不超过100000。</p>
-
-<p><strong>输出格式</strong>
-　　输出n行，每行为输入对应的八进制正整数。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/Unix-Fork%E5%87%BD%E6%95%B0/">一道题引出的Unix-Fork函数解析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'><span class="c1">//可产生20个进程，包括main进程</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">()</span><span class="o">&amp;&amp;</span><span class="n">fork</span><span class="p">()</span><span class="o">||</span><span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;+  </span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+        <a class="basic-alignment right" href="/blog/2018/08/28/server%E8%B6%85%E7%BA%A7%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A1%A8/" title="Next Post: server 超级全局变量表">server 超级全局变量表 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/Unix-Fork%E5%87%BD%E6%95%B0/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-  <aside class="sidebar">
-      
-        
-      
-  </aside>
 
     </div>
   </div>

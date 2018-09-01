@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jquery | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/jquery/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-01T21:20:44+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[深入理解JQuery中的on方法(事件委派机制)]]></title>
+    <link href="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/"/>
+    <updated>2018-08-27T00:00:00+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/08/27/深入理解JQuery中的on方法(事件委派机制）</id>
+    <content type="html"><![CDATA[<p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
+
+<h2>抛出问题：</h2>
+
+<blockquote><p>jquery on()方法和click()等绑定事件监听函数的方法有什么区别?</p></blockquote>
+
+<h2>demo：</h2>
+
+<p>以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 HTML 元素，使用 click() 这种写法，点击 Delete 按钮无法删除；使用 On() 方式可以。</p>
+
+<p><a href="https://c.runoob.com/codedemo/5357">在线演示</a></p>
+
+<pre><code class="js">$("#newclick").click(function(){ 
+    $(".li").append('&lt;li&gt;动态添加的HTML元素click&lt;button class="deleteclick"&gt;Delete&lt;/button&gt;&lt;/li&gt;'); 
+});
+$("#newon").click(function(){ 
+    $(".li").append('&lt;li&gt;动态添加的HTML元素on&lt;button class="deleteon"&gt;Delete&lt;/button&gt;&lt;/li&gt;'); 
+});
+$(".delete").click(function(){ 
+    $(this).parent().remove(); 
+}); 
+
+$(".li").on('click', ".deleteon", function(){
+    $(this).parent().remove(); 
+})
+$(".deleteclick").click(function(){ 
+    $(this).parent().remove(); 
+});
+</code></pre>
+
+<!-- more -->
+
+
+<h2>结论：</h2>
+
+<p>二者在绑定<strong>静态控件</strong>时没有区别，<em>但是</em>如果面对动态产生的控件，只有on()能成功的绑定到<strong>动态控件</strong>中。
+{:.info}</p>
+
+<h2>拓展</h2>
+
+<p>许多项目在前后端交互时都采用ajax或pjax等技术动态添加新的控件。在这种情况下，就必须使用on（）方法来为新添加的元素绑定事件监听函数。
+具体见参考博客</p>
+]]></content>
+  </entry>
+  
+</feed>
