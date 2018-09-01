@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 算法 | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/suan-fa/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-01T21:20:44+08:00</updated>
+  <updated>2018-09-02T00:14:37+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[大数阶乘问题及内存分配的堆和栈区别]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <link href="https://mrfant.github.io/blog/2017/11/24/the-big-num-mul/"/>
     <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/大数阶乘问题及内存分配中堆和栈的区别</id>
+    <id>https://mrfant.github.io/blog/2017/11/24/the-big-num-mul</id>
     <content type="html"><![CDATA[<h2>问题描述：</h2>
 
 <blockquote><p>问题描述</p>
@@ -137,49 +137,10 @@ int main() {
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[十六进制转十进制]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6/"/>
-    <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/十六进制转十进制</id>
-    <content type="html"><![CDATA[<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
-
-<blockquote><p>问题描述</p>
-
-<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
-
-<!-- more -->
-
-
-<p><strong>code</strong>：</p>
-
-<pre><code class="c">#include &lt;iostream&gt;
-using namespace std;
-int 
-main(void){
-    unsigned long value;
-    cin&gt;&gt;hex&gt;&gt;value;
-    cout&lt;&lt;dec&lt;&lt;value;
-    return 0;
-
-}
-</code></pre>
-
-<p>题目本身不提，只是发现一个奇怪的情况：</p>
-
-<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code>value</code>变量是<code>Long</code>类型，然后惊奇地发现<code>Long</code>类型居然也无法容下这个四十亿的数，只有换成<code>unsigned Long</code>类型才能容纳。</p>
-
-<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
-
-<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[十六进制转八进制之大数问题的处理]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86/"/>
+    <link href="https://mrfant.github.io/blog/2017/11/24/Hex2Oct/"/>
     <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/十六进制转八进制之大数问题的处理</id>
+    <id>https://mrfant.github.io/blog/2017/11/24/Hex2Oct</id>
     <content type="html"><![CDATA[<blockquote><p><strong>问题描述</strong>
 　　给定n个十六进制正整数，输出它们对应的八进制数。</p>
 
@@ -356,6 +317,45 @@ int main(){
 <p>2、对蓝桥杯的输入输出的判罚机制有了更多了解，原来可以不用把输入全部输进去再输出结果，如本方法中的源码一般输入一条，输出一条也是可以的。</p>
 
 <p>3、对本题方法一中的str.Length() 的 i为int型有点疑惑，因为之前总结出的蓝桥杯的编译系统为8位或16位，int类型应该存储不下十万这么大的数才对，但此处证明可以，有些疑惑，先挖个坑，到时候填。。。。。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[十六进制转十进制]]></title>
+    <link href="https://mrfant.github.io/blog/2017/11/24/Hex2Dec/"/>
+    <updated>2017-11-24T17:19:52+08:00</updated>
+    <id>https://mrfant.github.io/blog/2017/11/24/Hex2Dec</id>
+    <content type="html"><![CDATA[<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
+
+<blockquote><p>问题描述</p>
+
+<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
+　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
+
+<!-- more -->
+
+
+<p><strong>code</strong>：</p>
+
+<pre><code class="c">#include &lt;iostream&gt;
+using namespace std;
+int 
+main(void){
+    unsigned long value;
+    cin&gt;&gt;hex&gt;&gt;value;
+    cout&lt;&lt;dec&lt;&lt;value;
+    return 0;
+
+}
+</code></pre>
+
+<p>题目本身不提，只是发现一个奇怪的情况：</p>
+
+<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code>value</code>变量是<code>Long</code>类型，然后惊奇地发现<code>Long</code>类型居然也无法容下这个四十亿的数，只有换成<code>unsigned Long</code>类型才能容纳。</p>
+
+<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
+
+<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
 ]]></content>
   </entry>
   

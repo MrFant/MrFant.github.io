@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Jquery - YII Fant's Blog</title>
+  <title>深入理解JQuery中的on方法(事件委派机制) - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="Category: jquery">
+  <meta name="description" content="参考博客：https://segmentfault.com/a/1190000006652120 抛出问题： jquery on()方法和click()等绑定事件监听函数的方法有什么区别? demo： 以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/categories/jquery">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -96,60 +96,147 @@
   <div id="main">
     <div id="content">
           <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Jquery</h1>
+    
+      
+        <h1 class="entry-title">深入理解JQuery中的on方法(事件委派机制)</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
+
+<h2>抛出问题：</h2>
+
+<blockquote><p>jquery on()方法和click()等绑定事件监听函数的方法有什么区别?</p></blockquote>
+
+<h2>demo：</h2>
+
+<p>以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 HTML 元素，使用 click() 这种写法，点击 Delete 按钮无法删除；使用 On() 方式可以。</p>
+
+<p><a href="https://c.runoob.com/codedemo/5357">在线演示</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素click&lt;button class=&quot;deleteclick&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newon&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素on&lt;button class=&quot;deleteon&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.delete&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s2">&quot;.deleteon&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.deleteclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
-  
-  <h2>2018</h2>
 
-<article>
-  
-<h1><a href="/blog/2018/09/01/jquery-ready-yu-window-dot-onloadde-qu-bie/">Jquery .ready() 与window.onload的区别</a></h1>
-<time datetime="2018-09-01T23:15:26+08:00" pubdate><span class='month'>Sep</span> <span class='day'>01</span> <span class='year'>2018</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/jquery/'>jquery</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<h2>结论：</h2>
 
+<p>二者在绑定<strong>静态控件</strong>时没有区别，<em>但是</em>如果面对动态产生的控件，只有on()能成功的绑定到<strong>动态控件</strong>中。
+{:.info}</p>
 
+<h2>拓展</h2>
 
-<article>
-  
-<h1><a href="/blog/2018/08/27/jQuery-on-methon/">深入理解JQuery中的on方法(事件委派机制)</a></h1>
-<time datetime="2018-08-27T00:00:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>27</span> <span class='year'>2018</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/jquery/'>jquery</a></span>
-</footer>
-
-
-</article>
-
+<p>许多项目在前后端交互时都采用ajax或pjax等技术动态添加新的控件。在这种情况下，就必须使用on（）方法来为新添加的元素绑定事件监听函数。
+具体见参考博客</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
-</article>
 
 
-</div>
 
-<aside class="sidebar">
+  <span class="byline author vcard">Authored by <span class="fn">
   
+    Yii
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jquery/'>jquery</a>
+  
+</span>
+
+
+    </p>
     
+      <div class="sharing">
   
-</aside>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/11/24/the-big-num-mul/" title="Previous Post: 大数阶乘问题及内存分配的堆和栈区别">&laquo; 大数阶乘问题及内存分配的堆和栈区别</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2018/08/28/server-superglobal/" title="Next Post: server 超级全局变量表">server 超级全局变量表 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
 
     </div>
   </div>

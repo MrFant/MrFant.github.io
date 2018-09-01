@@ -5,11 +5,24 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>深入理解JQuery中的on方法(事件委派机制) - YII Fant's Blog</title>
+  <title>一道题引出的Unix-Fork函数解析 - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="参考博客：https://segmentfault.com/a/1190000006652120 抛出问题： jquery on()方法和click()等绑定事件监听函数的方法有什么区别? demo： 以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 &hellip;">
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+//可产生20个进程，包括main进程 int main(void) { fork(); fork()&amp;&amp;fork()||fork &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -33,6 +46,18 @@
 <!--- MathJax Configuration -->
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-125076133-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
 
 </head>
 
@@ -89,7 +114,7 @@
   <header>
     
       
-        <h1 class="entry-title">深入理解JQuery中的on方法(事件委派机制)</h1>
+        <h1 class="entry-title">一道题引出的Unix-Fork函数解析</h1>
       
     
     
@@ -99,7 +124,7 @@
 
 
 
-<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
         
         
       </p>
@@ -107,19 +132,7 @@
   </header>
 
 
-<div class="entry-content"><p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
-
-<h2>抛出问题：</h2>
-
-<blockquote><p>jquery on()方法和click()等绑定事件监听函数的方法有什么区别?</p></blockquote>
-
-<h2>demo：</h2>
-
-<p>以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 HTML 元素，使用 click() 这种写法，点击 Delete 按钮无法删除；使用 On() 方式可以。</p>
-
-<p><a href="https://c.runoob.com/codedemo/5357">在线演示</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -130,44 +143,22 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素click&lt;button class=&quot;deleteclick&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newon&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素on&lt;button class=&quot;deleteon&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.delete&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="c1">//可产生20个进程，包括main进程</span>
 </span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s2">&quot;.deleteon&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">})</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.deleteclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">fork</span><span class="p">()</span><span class="o">&amp;&amp;</span><span class="n">fork</span><span class="p">()</span><span class="o">||</span><span class="n">fork</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;+  </span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
 
 
 <!-- more -->
 
-
-<h2>结论：</h2>
-
-<p>二者在绑定<strong>静态控件</strong>时没有区别，<em>但是</em>如果面对动态产生的控件，只有on()能成功的绑定到<strong>动态控件</strong>中。
-{:.info}</p>
-
-<h2>拓展</h2>
-
-<p>许多项目在前后端交互时都采用ajax或pjax等技术动态添加新的控件。在这种情况下，就必须使用on（）方法来为新添加的元素绑定事件监听函数。
-具体见参考博客</p>
 </div>
 
 
@@ -190,13 +181,13 @@
 
 
 
-<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/jquery/'>jquery</a>
+    <a class='category' href='/blog/categories/unix-slash-linux/'>unix/linux</a>
   
 </span>
 
@@ -205,7 +196,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function/" data-via="" data-counturl="https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function/" >Tweet</a>
   
   
   
@@ -214,10 +205,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Previous Post: 大数阶乘问题及内存分配的堆和栈区别">&laquo; 大数阶乘问题及内存分配的堆和栈区别</a>
+        <a class="basic-alignment left" href="/blog/2017/11/24/Hex2Oct/" title="Previous Post: 十六进制转八进制之大数问题的处理">&laquo; 十六进制转八进制之大数问题的处理</a>
       
       
-        <a class="basic-alignment right" href="/blog/2018/08/28/server%E8%B6%85%E7%BA%A7%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A1%A8/" title="Next Post: server 超级全局变量表">server 超级全局变量表 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2017/11/24/the-big-num-mul/" title="Next Post: 大数阶乘问题及内存分配的堆和栈区别">大数阶乘问题及内存分配的堆和栈区别 &raquo;</a>
       
     </p>
   </footer>

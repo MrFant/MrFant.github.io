@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jetbrain-ide | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/jetbrain-ide/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-02T00:14:37+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[IntelliJ IDEA的inspections功能]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng/"/>
+    <updated>2018-09-01T23:13:14+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng</id>
+    <content type="html"><![CDATA[<blockquote><p>Intellij idea的inspections功能非常智能，甚至可以成为菜鸟程序员的学习工具，借助于它可以规范自己的代码，完善风格，甚至大多数bug或error都能在inspections下无所遁形
+但是在有些情况下我们也需要自定义inspections的相关功能，
+以下记录我自定义的配置：</p></blockquote>
+
+<ol>
+<li><p>thymeleaf  的：expression variable validation ，由于tymeleaf的表达式定义在controller里，idea找不到其定义所以会报错，其实不影响运行，所以把这个inspect从error修改为warning。</p></li>
+<li><p>xml 的unbound namespace prefixes  ， 这个也与thymeleaf有关，在一个项目中使用tymeleaf代码fragment时，由于th namespace没有bound，所以会不停报错，为了不影响，也把这个关了。</p></li>
+</ol>
+
+
+<!-- more -->
+
+]]></content>
+  </entry>
+  
+</feed>

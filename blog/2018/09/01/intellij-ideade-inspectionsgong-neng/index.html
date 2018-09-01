@@ -5,23 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>十六进制转十进制 - YII Fant's Blog</title>
+  <title>IntelliJ IDEA的inspections功能 - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="问题描述 从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。 code： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-#include &lt;iostream&gt;
-using &hellip;">
+  <meta name="description" content="Intellij idea的inspections功能非常智能，甚至可以成为菜鸟程序员的学习工具，借助于它可以规范自己的代码，完善风格，甚至大多数bug或error都能在inspections下无所遁形
+但是在有些情况下我们也需要自定义inspections的相关功能，
+以下记录我自定义的配置： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,7 +20,7 @@ using &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -45,6 +35,18 @@ using &hellip;">
 <!--- MathJax Configuration -->
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-125076133-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
 
 </head>
 
@@ -101,7 +103,7 @@ using &hellip;">
   <header>
     
       
-        <h1 class="entry-title">十六进制转十进制</h1>
+        <h1 class="entry-title">IntelliJ IDEA的inspections功能</h1>
       
     
     
@@ -111,7 +113,7 @@ using &hellip;">
 
 
 
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
+<time class='entry-date' datetime='2018-09-01T23:13:14+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2018</span></span> <span class='time'>11:13 pm</span></time>
         
         
       </p>
@@ -119,48 +121,18 @@ using &hellip;">
   </header>
 
 
-<div class="entry-content"><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
+<div class="entry-content"><blockquote><p>Intellij idea的inspections功能非常智能，甚至可以成为菜鸟程序员的学习工具，借助于它可以规范自己的代码，完善风格，甚至大多数bug或error都能在inspections下无所遁形
+但是在有些情况下我们也需要自定义inspections的相关功能，
+以下记录我自定义的配置：</p></blockquote>
 
-<blockquote><p>问题描述</p>
+<ol>
+<li><p>thymeleaf  的：expression variable validation ，由于tymeleaf的表达式定义在controller里，idea找不到其定义所以会报错，其实不影响运行，所以把这个inspect从error修改为warning。</p></li>
+<li><p>xml 的unbound namespace prefixes  ， 这个也与thymeleaf有关，在一个项目中使用tymeleaf代码fragment时，由于th namespace没有bound，所以会不停报错，为了不影响，也把这个关了。</p></li>
+</ol>
 
-<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
 
 <!-- more -->
 
-
-<p><strong>code</strong>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span><span class='line'><span class="kt">int</span>
-</span><span class='line'><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">hex</span><span class="o">&gt;&gt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">dec</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>题目本身不提，只是发现一个奇怪的情况：</p>
-
-<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code>value</code>变量是<code>Long</code>类型，然后惊奇地发现<code>Long</code>类型居然也无法容下这个四十亿的数，只有换成<code>unsigned Long</code>类型才能容纳。</p>
-
-<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
-
-<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
 </div>
 
 
@@ -183,13 +155,13 @@ using &hellip;">
 
 
 
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
+<time class='entry-date' datetime='2018-09-01T23:13:14+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2018</span></span> <span class='time'>11:13 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/suan-fa/'>算法</a>
+    <a class='category' href='/blog/categories/jetbrain-ide/'>jetbrain-ide</a>
   
 </span>
 
@@ -198,7 +170,7 @@ using &hellip;">
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6/" data-via="" data-counturl="https://mrfant.github.io/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng/" >Tweet</a>
   
   
   
@@ -207,10 +179,10 @@ using &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/11/24/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86/" title="Previous Post: 十六进制转八进制之大数问题的处理">&laquo; 十六进制转八进制之大数问题的处理</a>
+        <a class="basic-alignment left" href="/blog/2018/08/28/server-superglobal/" title="Previous Post: server 超级全局变量表">&laquo; server 超级全局变量表</a>
       
       
-        <a class="basic-alignment right" href="/blog/2017/11/24/%E5%A4%A7%E6%95%B0%E9%98%B6%E4%B9%98%E9%97%AE%E9%A2%98%E5%8F%8A%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%AD%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Next Post: 大数阶乘问题及内存分配的堆和栈区别">大数阶乘问题及内存分配的堆和栈区别 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2018/09/01/jquery-ready-yu-window-dot-onloadde-qu-bie/" title="Next Post: jquery .ready() 与window.onload的区别">jquery .ready() 与window.onload的区别 &raquo;</a>
       
     </p>
   </footer>

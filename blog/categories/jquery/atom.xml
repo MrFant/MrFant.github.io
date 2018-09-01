@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-01T21:20:44+08:00</updated>
+  <updated>2018-09-02T00:14:37+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -14,10 +14,54 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Jquery .ready() 与window.onload的区别]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/01/jquery-ready-yu-window-dot-onloadde-qu-bie/"/>
+    <updated>2018-09-01T23:15:26+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/01/jquery-ready-yu-window-dot-onloadde-qu-bie</id>
+    <content type="html"><![CDATA[<h2>1.执行时间</h2>
+
+<p>window.onload必须等到页面内包括<strong>图片</strong>的<strong>所有</strong>元素加载完毕后才能执行。
+$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。</p>
+
+<h2>2.编写个数不同</h2>
+
+<p>window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个
+$(document).ready()可以同时编写多个，并且都可以得到执行</p>
+
+<!-- more -->
+
+
+<h2>3.简化写法</h2>
+
+<pre><code>window.onload没有简化写法 
+
+$(document).ready(function(){})
+可以简写成:
+$(function(){});
+$(function(){});        //$()里面一个匿名函数
+</code></pre>
+
+<p>另外，需要注意一点，由于在 <code>$(document).ready()</code> 方法内注册的事件，只要 <strong>DOM 就绪</strong>就会被执行，因此可能此时元素的关联文件未下载完。例如与图片有关的 html 下载完毕，并且已经解析为 DOM 树了，但很有可能图片还没有加载完毕,所以例如<em>图片的高度和宽度</em>这样的属性此时不一定有效。
+要解决这个问题，可以使用 Jquery 中另一个关于页面加载的方法 &mdash;<code>load()</code> 方法。 <code>load()</code> 方法会在元素的 onload 事件中绑定一个处理函数。如果处理函数绑定给 window 对象，则会在所有内容 ( 包括窗口、框架、对象和图像等 ) 加载完毕后触发，如果处理函数绑定在元素上，则会在元素的内容加载完毕后触发。</p>
+
+<h3>代码如下：</h3>
+
+<pre><code class="js">$(window).load(function (){ 
+       // 编写代码  
+});
+//等价于 JavaScript 中的以下代码 
+Window.onload = function (){ 
+     // 编写代码 
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[深入理解JQuery中的on方法(事件委派机制)]]></title>
-    <link href="https://mrfant.github.io/blog/2018/08/27/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JQuery%E4%B8%AD%E7%9A%84on%E6%96%B9%E6%B3%95(%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%89/"/>
+    <link href="https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon/"/>
     <updated>2018-08-27T00:00:00+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/08/27/深入理解JQuery中的on方法(事件委派机制）</id>
+    <id>https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon</id>
     <content type="html"><![CDATA[<p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
 
 <h2>抛出问题：</h2>

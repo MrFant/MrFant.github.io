@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unix/linux | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/unix-slash-linux/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-01T21:20:44+08:00</updated>
+  <updated>2018-09-02T00:14:37+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[一道题引出的Unix-Fork函数解析]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/Unix-Fork%E5%87%BD%E6%95%B0/"/>
+    <link href="https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function/"/>
     <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/Unix-Fork函数</id>
+    <id>https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function</id>
     <content type="html"><![CDATA[<pre><code class="c">#include &lt;unistd.h&gt;
 #include &lt;stdio.h&gt;
 //可产生20个进程，包括main进程
