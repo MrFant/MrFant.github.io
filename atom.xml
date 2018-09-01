@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://mrfant.github.io/atom.xml" rel="self"/>
   <link href="http://mrfant.github.io/"/>
-  <updated>2018-09-01T01:13:10+08:00</updated>
+  <updated>2018-09-01T11:43:15+08:00</updated>
   <id>http://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Welcome to My Blog]]></title>
+    <link href="http://mrfant.github.io/blog/2018/09/01/welcome-to-my-blog/"/>
+    <updated>2018-09-01T09:19:43+08:00</updated>
+    <id>http://mrfant.github.io/blog/2018/09/01/welcome-to-my-blog</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>

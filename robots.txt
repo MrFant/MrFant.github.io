@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://mrfant.github.io/sitemap.xml 
+Sitemap: http://mrfant.github.io/sitemap.xml
