@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Html | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/html/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-02T10:45:55+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown中插入html代码的坑]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/"/>
+    <updated>2018-09-02T10:38:20+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng</id>
+    <content type="html"><![CDATA[<p>Pygments 是个好工具，能够让markdown里的代码片段高亮显示，没有这货的存在，整个博文加上代码难免显得枯燥乏味。
+但是在使用pygemnts，也就是在markdown写作的过程中插入代码时也有许多的坑，特别是插入html代码时。
+由于markdown是一种标记语言</p>
+]]></content>
+  </entry>
+  
+</feed>

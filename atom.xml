@@ -4,7 +4,7 @@
   <title><![CDATA[YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-02T00:14:37+08:00</updated>
+  <updated>2018-09-02T10:45:55+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -12,6 +12,134 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown中插入html代码的坑]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/"/>
+    <updated>2018-09-02T10:38:20+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng</id>
+    <content type="html"><![CDATA[<p>Pygments 是个好工具，能够让markdown里的代码片段高亮显示，没有这货的存在，整个博文加上代码难免显得枯燥乏味。
+但是在使用pygemnts，也就是在markdown写作的过程中插入代码时也有许多的坑，特别是插入html代码时。
+由于markdown是一种标记语言</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Js-jquery-get-htm5-dataattr[转载]]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/02/js-jquery-get-htm5-dataattr/"/>
+    <updated>2018-09-02T00:16:47+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/02/js-jquery-get-htm5-dataattr</id>
+    <content type="html"><![CDATA[<p><a href="https://segmentfault.com/a/1190000005770912">原文链接</a></p>
+
+<p>今天做项目的时候发现一个坑，关于jQuery获取data-*属性的方法data()，特写此篇来记录。</p>
+
+<blockquote><p>HTML5规定可以为元素添加非标准型的属性，只需添加前缀data-，这些属性可以随意添加，随意命名，目的是为元素提供与渲染无关的信息，或提供语义信息。</p></blockquote>
+
+<h2>js获取data-*的方式</h2>
+
+<h3>通过dataset属性访问</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myDiv&quot;</span><span class="na">data-appid=</span><span class="s">&quot;123&quot;</span> <span class="na">data-myname=</span><span class="s">&quot;lsxj&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myDiv&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">appId</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">appid</span><span class="p">;</span><span class="c1">//获取data-appid的值</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myName</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">myname</span><span class="p">;</span><span class="c1">//获取data-myname的值</span>
+</span><span class='line'><span class="c1">//设置值</span>
+</span><span class='line'><span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">appid</span> <span class="o">=</span> <span class="mi">456</span><span class="p">;</span>
+</span><span class='line'><span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">myname</span> <span class="o">=</span> <span class="s2">&quot;newname&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最终HTML结果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myDiv&quot;</span> <span class="na">data-appid=</span><span class="s">&quot;456&quot;</span> <span class="na">data-myname=</span><span class="s">&quot;newname&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dataset属性的值是DOMStringMap的一个实例，名值对的映射。每个data-name形式的属性都有一个对应的属性，只不过该属性名没有data-前缀。</p>
+
+<p>需要注意的是，dataset中大小写的问题。带连字符连接的名称在使用的时候需要命名驼峰化。例如data-my-name对应的是dataset.myName的值。可看以下代码</p>
+
+<p>//将上面代码的设置值部分进行修改</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">appId</span> <span class="o">=</span> <span class="mi">789</span><span class="p">;</span>
+</span><span class='line'><span class="nx">div</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">myName</span> <span class="o">=</span> <span class="s2">&quot;secondname&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最终结果:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myDiv&quot;</span> <span class="na">data-appid=</span><span class="s">&quot;123&quot;</span> <span class="na">data-myname=</span><span class="s">&quot;lsxj&quot;</span> <span class="na">data-app-id=</span><span class="s">&quot;456&quot;</span> <span class="na">data-my-name=</span><span class="s">&quot;secondname&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>传统获取方式 getAttribute</h3>
+
+<p>还是上述的例子。获取data-*的方法可使用如下方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">appId</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;data-appid&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// jQuery获取方法</span>
+</span><span class='line'><span class="c1">// data()方法</span>
+</span><span class='line'><span class="c1">//获取属性</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">appid</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myDiv&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;appid&quot;</span><span class="p">);</span> <span class="c1">//123</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">app_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myDiv&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;app-id&quot;</span><span class="p">);</span> <span class="c1">//456</span>
+</span><span class='line'><span class="c1">//属性赋值</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myDiv&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;appid&quot;</span><span class="p">,</span><span class="s2">&quot;666&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//最终HTML代码</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myDiv&quot;</span> <span class="na">data-appid=</span><span class="s">&quot;456&quot;</span> <span class="na">data-myname=</span><span class="s">&quot;newname&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>需要注意的是，data()的值进行修改并不会影响到DOM元素上的data-*属性的改变。data()的本质其实是将一个 “cache” 附加到了对象上，并使用了一个特殊的属性名称。
+所以上述代码中，虽然对div进行了data()赋值操作，但HTML代码中div的data-appid的值仍然为123，因为data()只是修改了缓存的那个值，此时进行$(&lsquo;#myDiv&rsquo;).data(&ldquo;appid&rdquo;)的操作，输出的结果为666.</p></blockquote>
+
+<h3>attr()方法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">appid</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#myDiv&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;data-appid&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考资料：</p>
+
+<ul>
+<li>jQuery官方文档</li>
+<li>jQuery.data()和HTML5之data-属性</li>
+<li>jQuery.data() 的实现方式</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Function-and-exclamation-mark[转载]]]></title>
