@@ -4,9 +4,9 @@
 
 url: https://mrfant.github.io
 title: YII Fant's Blog
-subtitle: Get busy living. or get busy dying.
+subtitle: Get busy living. Or get busy dying.
 author: Yii 
-simple_search: https://www.google.com/search
+# simple_search: https://www.google.com/search
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")

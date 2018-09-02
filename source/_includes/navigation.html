@@ -131,5 +131,11 @@
           <input class="search" type="text" name="q" results="0" placeholder="Search"/>
         </fieldset>
       </form>
+  {% else %}
+      <form onsubmit="">
+        <fieldset role="search">
+          <input id="J_search" class="search" type="text" name="search" results="0" placeholder="Search" onKeyUp="keyWasUp(event)" />
+        </fieldset>
+      </form>
   {% endif %}
 {% include custom/navigation.html %}
