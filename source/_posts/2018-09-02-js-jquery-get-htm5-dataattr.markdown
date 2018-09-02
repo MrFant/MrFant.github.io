@@ -39,6 +39,7 @@ dataset属性的值是DOMStringMap的一个实例，名值对的映射。每个d
 需要注意的是，dataset中大小写的问题。带连字符连接的名称在使用的时候需要命名驼峰化。例如data-my-name对应的是dataset.myName的值。可看以下代码
 
 //将上面代码的设置值部分进行修改
+
 ```js
  div.dataset.appId = 789;
  div.dataset.myName = "secondname";
