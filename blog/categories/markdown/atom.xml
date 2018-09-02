@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Markdown | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/markdown/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-02T10:45:55+08:00</updated>
+  <updated>2018-09-02T22:26:22+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -20,7 +20,14 @@
     <id>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng</id>
     <content type="html"><![CDATA[<p>Pygments 是个好工具，能够让markdown里的代码片段高亮显示，没有这货的存在，整个博文加上代码难免显得枯燥乏味。
 但是在使用pygemnts，也就是在markdown写作的过程中插入代码时也有许多的坑，特别是插入html代码时。
-由于markdown是一种标记语言</p>
+由于markdown是一种标记语言，它会由解析器解析为html文本，所以为了<strong>安全考虑</strong>，
+在mardown中插入html代码时就有许多禁忌。</p>
+
+<pre><code>插入html代码时，必须让html代码用tab内嵌，当然最好用html代码块包裹
+</code></pre>
+
+<!-- more -->
+
 ]]></content>
   </entry>
   

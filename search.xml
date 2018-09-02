@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<articles>
+
+<article>
+    <title>Markdown中插入html代码的坑</title>
+    <url>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/</url>
+    <date>2018-09-02</date>
+</article>
+
+<article>
+    <title>js-jquery-get-htm5-dataattr[转载]</title>
+    <url>https://mrfant.github.io/blog/2018/09/02/js-jquery-get-htm5-dataattr/</url>
+    <date>2018-09-02</date>
+</article>
+
+<article>
+    <title>function-and-exclamation-mark[转载]</title>
+    <url>https://mrfant.github.io/blog/2018/09/01/function-and-exclamation-mark/</url>
+    <date>2018-09-01</date>
+</article>
+
+<article>
+    <title>jquery .ready() 与window.onload的区别</title>
+    <url>https://mrfant.github.io/blog/2018/09/01/jquery-ready-yu-window-dot-onloadde-qu-bie/</url>
+    <date>2018-09-01</date>
+</article>
+
+<article>
+    <title>IntelliJ IDEA的inspections功能</title>
+    <url>https://mrfant.github.io/blog/2018/09/01/intellij-ideade-inspectionsgong-neng/</url>
+    <date>2018-09-01</date>
+</article>
+
+<article>
+    <title>server 超级全局变量表</title>
+    <url>https://mrfant.github.io/blog/2018/08/28/server-superglobal/</url>
+    <date>2018-08-28</date>
+</article>
+
+<article>
+    <title>深入理解JQuery中的on方法(事件委派机制)</title>
+    <url>https://mrfant.github.io/blog/2018/08/27/jQuery-on-methon/</url>
+    <date>2018-08-27</date>
+</article>
+
+<article>
+    <title>大数阶乘问题及内存分配的堆和栈区别</title>
+    <url>https://mrfant.github.io/blog/2017/11/24/the-big-num-mul/</url>
+    <date>2017-11-24</date>
+</article>
+
+<article>
+    <title>一道题引出的Unix-Fork函数解析</title>
+    <url>https://mrfant.github.io/blog/2017/11/24/Unix-Fork-function/</url>
+    <date>2017-11-24</date>
+</article>
+
+<article>
+    <title>十六进制转八进制之大数问题的处理</title>
+    <url>https://mrfant.github.io/blog/2017/11/24/Hex2Oct/</url>
+    <date>2017-11-24</date>
+</article>
+
+<article>
+    <title>十六进制转十进制</title>
+    <url>https://mrfant.github.io/blog/2017/11/24/Hex2Dec/</url>
+    <date>2017-11-24</date>
+</article>
+
+</articles>
