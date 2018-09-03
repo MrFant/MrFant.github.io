@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/</loc>
+<lastmod>2018-09-03T17:16:02+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/</loc>
+<lastmod>2018-09-03T16:54:42+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/</loc>
+<lastmod>2018-09-03T16:48:36+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/</loc>
+<lastmod>2018-09-03T16:44:23+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/</loc>
+<lastmod>2018-09-03T09:51:37+08:00</lastmod>
+</url>
+<url>
 <loc>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/</loc>
 <lastmod>2018-09-02T10:38:20+08:00</lastmod>
 </url>
@@ -79,5 +99,14 @@
 </url>
 <url>
 <loc>https://mrfant.github.io/blog/categories/html/</loc>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/categories/python/</loc>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/categories/java/</loc>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/categories/spring/</loc>
 </url>
 </urlset>

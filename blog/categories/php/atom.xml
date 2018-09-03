@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Php | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/php/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-03T08:37:50+08:00</updated>
+  <updated>2018-09-03T17:20:28+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Php连接数据库实的一个不起眼bug]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/"/>
+    <updated>2018-09-03T16:44:23+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-[?]-ge-bu-qi-yan-bug</id>
+    <content type="html"><![CDATA[<p>在安装<strong>wordpress连接数据库</strong>的时候也出现了这个bug，太难以发觉了</p>
+
+<p>使用mysqli：</p>
+
+<pre><code class="php">&lt;?php
+$servername = “127.0.0.1”;  //这里不能用localhost，必须为数字
+$username = "username”; 
+$password = "password”; 
+// 创建连接
+$conn = new mysqli($servername, $username, $password); 
+// 检测连接
+if ($conn-&gt;connect_error) { 
+    die("连接失败: " . $conn-&gt;connect_error);
+ }
+ echo "连接成功”;
+ ?&gt;
+</code></pre>
+
+<p>同样，使用PDO时：</p>
+
+<pre><code class="php">&lt;?php
+$servername = "127.0.0.1";
+$username = "root";
+$password = "password";
+
+try {
+    $conn = new PDO("mysql:host=$servername;", $username, $password);
+    echo "连接成功";
+}
+catch(PDOException $e)
+{
+    echo $e-&gt;getMessage();
+}
+?&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Server 超级全局变量表]]></title>

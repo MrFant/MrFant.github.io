@@ -5,23 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>十六进制转十进制 - YII Fant's Blog</title>
+  <title>Category: Spring - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="问题描述 从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。 code： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-#include &lt;iostream&gt;
-using &hellip;">
+  <meta name="description" content="Category: spring">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,7 +18,7 @@ using &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2017/11/24/Hex2Dec">
+  <link rel="canonical" href="https://mrfant.github.io/blog/categories/spring">
   <link href="/heartbeat.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -120,126 +108,74 @@ using &hellip;">
   <div id="main">
     <div id="content">
           <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      
-        <h1 class="entry-title">十六进制转十进制</h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
+    <h1 class="entry-title">Category: Spring</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
 
-<blockquote><p>问题描述</p>
+  
+  <h2>2018</h2>
 
-<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
+<article>
+  
+<h1><a href="/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/">Spring Security注销logout操作解析</a></h1>
+<time datetime="2018-09-03T17:16:02+08:00" pubdate><span class='month'>Sep</span> <span class='day'>03</span> <span class='year'>2018</span></time>
 
-<!-- more -->
-
-
-<p><strong>code</strong>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span><span class='line'><span class="kt">int</span>
-</span><span class='line'><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">hex</span><span class="o">&gt;&gt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">dec</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a></span>
+</footer>
 
 
-<p>题目本身不提，只是发现一个奇怪的情况：</p>
+</article>
 
-<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code>value</code>变量是<code>Long</code>类型，然后惊奇地发现<code>Long</code>类型居然也无法容下这个四十亿的数，只有换成<code>unsigned Long</code>类型才能容纳。</p>
 
-<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
 
-<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
+<article>
+  
+<h1><a href="/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/">Spring Security4实现方法级别安全控制[转载]</a></h1>
+<time datetime="2018-09-03T16:54:42+08:00" pubdate><span class='month'>Sep</span> <span class='day'>03</span> <span class='year'>2018</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a></span>
+</footer>
+
+
+</article>
+
+
+
+<article>
+  
+<h1><a href="/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/">Spring MVC /error映射和自定义方法</a></h1>
+<time datetime="2018-09-03T16:48:36+08:00" pubdate><span class='month'>Sep</span> <span class='day'>03</span> <span class='year'>2018</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a></span>
+</footer>
+
+
+</article>
+
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-
-
-  <span class="byline author vcard">Authored by <span class="fn">
-  
-    Yii
-  
-  </span></span>
-
-
-      
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-      
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/suan-fa/'>算法</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2017/11/24/Hex2Dec/" data-via="" data-counturl="https://mrfant.github.io/blog/2017/11/24/Hex2Dec/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-      
-        <a class="basic-alignment right" href="/blog/2017/11/24/Hex2Oct/" title="Next Post: 十六进制转八进制之大数问题的处理">十六进制转八进制之大数问题的处理 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 
 </div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
 
     </div>
   </div>

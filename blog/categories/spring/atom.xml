@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Spring | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/spring/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-03T17:20:28+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spring Security注销logout操作解析]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/"/>
+    <updated>2018-09-03T17:16:02+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi</id>
+    <content type="html"><![CDATA[<p><img src="https://i.loli.net/2018/09/03/5b8cfc630f43a.png" alt="spring security" />
+<strong>csrf protection is enable default</strong></p>
+
+<pre><code>所以想用get请求来实现注销操作首先要把csrf关掉。
+</code></pre>
+
+<pre><code class="java">http.csrf().disable();
+</code></pre>
+
+<p>第二种方法：
+不需要关闭csrf，直接调用相关方法：
+就可以用get请求来logout</p>
+
+<pre><code class="java">@RequestMapping(value="/logout", method = RequestMethod.GET)
+public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+   if (auth != null){    
+      new SecurityContextLogoutHandler().logout(request, response, auth);
+   }
+   return "redirect:/login?logout";
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring Security4实现方法级别安全控制[转载]]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/"/>
+    <updated>2018-09-03T16:54:42+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi</id>
+    <content type="html"><![CDATA[<p>原文地址： <a href="http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/">http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/</a>
+译文地址： <a href="https://blog.csdn.net/w605283073/article/details/51327182">https://blog.csdn.net/w605283073/article/details/51327182</a></p>
+
+<p><code>@Secured</code> 注解不能指定AND这个条件，比如指定某个方法只能被拥有ADMIN和DBA身份的用户调用。
+但是用<code>@PreAuthorize/@PostAuthorize</code>注解可以实现，这两个注解支持<strong>Spring EL</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring MVC /error映射和自定义方法]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/"/>
+    <updated>2018-09-03T16:48:36+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa</id>
+    <content type="html"><![CDATA[<p>/error映射是一个特殊映射，当在template中创建了error.html页面后，发生错误后会自动映射到/error上.</p>
+
+<pre><code>所以创建controller时，不要创建“/error”映射，会无法map到。
+</code></pre>
+
+<blockquote><p>错误页面和Spring Security 的Access_Denied页面是不同的！</p></blockquote>
+
+<p>自定义的异常处理参考这篇博客：
+<a href="http://blog.didispace.com/springbootexception/">http://blog.didispace.com/springbootexception/</a></p>
+
+<pre><code class="java">@ControllerAdvice
+
+class GlobalExceptionHandler {
+
+
+
+    public static final String DEFAULT_ERROR_VIEW = "error";
+
+
+
+    @ExceptionHandler(value = Exception.class)
+
+    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("exception", e);
+
+        mav.addObject("url", req.getRequestURL());
+
+        mav.setViewName(DEFAULT_ERROR_VIEW);
+
+        return mav;
+
+    }
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

@@ -9,9 +9,18 @@
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="Pygments 是个好工具，能够让markdown里的代码片段高亮显示，没有这货的存在，整个博文加上代码难免显得枯燥乏味。
-但是在使用pygemnts，也就是在markdown写作的过程中插入代码时也有许多的坑，特别是插入html代码时。
-由于markdown是一种标记语言， &hellip;">
+  <meta name="description" content="csrf protection is enable default 所以想用get请求来实现注销操作首先要把csrf关掉。 1
+http.csrf().disable(); 第二种方法：
+不需要关闭csrf，直接调用相关方法：
+就可以用get请求来logout 1
+2
+3
+4
+5
+6
+7
+8
+@ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +30,7 @@
 
   
   <link rel="canonical" href="https://mrfant.github.io">
-  <link href="/favicon.png" rel="icon">
+  <link href="/heartbeat.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -111,6 +120,381 @@
     <div id="content">
           <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/">Spring Security注销logout操作解析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T17:16:02+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>5:16 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="https://i.loli.net/2018/09/03/5b8cfc630f43a.png" alt="spring security" />
+<strong>csrf protection is enable default</strong></p>
+
+<pre><code>所以想用get请求来实现注销操作首先要把csrf关掉。
+</code></pre>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第二种方法：
+不需要关闭csrf，直接调用相关方法：
+就可以用get请求来logout</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&quot;/logout&quot;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">logoutPage</span> <span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>   <span class="n">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+</span><span class='line'>   <span class="k">if</span> <span class="o">(</span><span class="n">auth</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span><span class='line'>      <span class="k">new</span> <span class="nf">SecurityContextLogoutHandler</span><span class="o">().</span><span class="na">logout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>   <span class="k">return</span> <span class="s">&quot;redirect:/login?logout&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/">Spring Security4实现方法级别安全控制[转载]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T16:54:42+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>4:54 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原文地址： <a href="http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/">http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/</a>
+译文地址： <a href="https://blog.csdn.net/w605283073/article/details/51327182">https://blog.csdn.net/w605283073/article/details/51327182</a></p>
+
+<p><code>@Secured</code> 注解不能指定AND这个条件，比如指定某个方法只能被拥有ADMIN和DBA身份的用户调用。
+但是用<code>@PreAuthorize/@PostAuthorize</code>注解可以实现，这两个注解支持<strong>Spring EL</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/">Spring MVC /error映射和自定义方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T16:48:36+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>4:48 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>/error映射是一个特殊映射，当在template中创建了error.html页面后，发生错误后会自动映射到/error上.</p>
+
+<pre><code>所以创建controller时，不要创建“/error”映射，会无法map到。
+</code></pre>
+
+<blockquote><p>错误页面和Spring Security 的Access_Denied页面是不同的！</p></blockquote>
+
+<p>自定义的异常处理参考这篇博客：
+<a href="http://blog.didispace.com/springbootexception/">http://blog.didispace.com/springbootexception/</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@ControllerAdvice</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">GlobalExceptionHandler</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DEFAULT_ERROR_VIEW</span> <span class="o">=</span> <span class="s">&quot;error&quot;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">defaultErrorHandler</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">ModelAndView</span> <span class="n">mav</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ModelAndView</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mav</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&quot;exception&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mav</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&quot;url&quot;</span><span class="o">,</span> <span class="n">req</span><span class="o">.</span><span class="na">getRequestURL</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">mav</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="n">DEFAULT_ERROR_VIEW</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">mav</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/">Php连接数据库实的一个不起眼bug</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T16:44:23+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>4:44 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在安装<strong>wordpress连接数据库</strong>的时候也出现了这个bug，太难以发觉了</p>
+
+<p>使用mysqli：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="nv">$servername</span> <span class="o">=</span> <span class="nx">“127</span><span class="o">.</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">1</span><span class="nx">”</span><span class="p">;</span>  <span class="c1">//这里不能用localhost，必须为数字</span>
+</span><span class='line'><span class="nv">$username</span> <span class="o">=</span> <span class="s2">&quot;username”; </span>
+</span><span class='line'><span class="si">$password</span><span class="s2"> = &quot;</span><span class="nx">password”</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// 创建连接</span>
+</span><span class='line'><span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$servername</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// 检测连接</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;连接失败: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'> <span class="k">echo</span> <span class="s2">&quot;连接成功”;</span>
+</span><span class='line'><span class="s2"> ?&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同样，使用PDO时：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="nv">$servername</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$username</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=</span><span class="si">$servername</span><span class="s2">;&quot;</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;连接成功&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$e</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/">Python 全局变量与global关键字</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T09:51:37+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:51 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在python开发使用<strong>全局变量</strong>的时候，会经常遇到一个奇怪的问题：
+如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
+</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
+</span><span class='line'><span class="n">Func</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行后出现这样的错误：</p>
+
+<pre><code>Traceback (most recent call last):
+File "test.py", line 5, in &lt;module&gt;
+    Func()
+File "test.py", line 3, in Func
+    print num
+UnboundLocalError: local variable 'num' referenced before assignment
+</code></pre>
+
+<p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
+分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>
+
+<p>查阅文档之后可知，python的全局变量的作用域是整篇代码，在函数之中可以<strong>引用</strong>全局变量的值，但是如果要<strong>修改</strong>它，就会把它当作函数内部的局部变量。
+要想引用并修改全局变量必须在变量前面加上<code>global关键字</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
+</span><span class='line'>    <span class="o">//</span> <span class="err">哪个函数要修改全局变量，都要在函数前声明一下</span>
+</span><span class='line'>    <span class="k">global</span> <span class="n">num</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
+</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
+</span><span class='line'><span class="n">Func</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是有一个函数例外，那就是<strong>主函数</strong>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>    <span class="o">//</span><span class="err">在主函数里可以正常运行，不需</span><span class="k">global</span><span class="err">声明</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
+</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -348,270 +732,6 @@ $(document).ready()可以同时编写多个，并且都可以得到执行</p>
   
     <footer>
       <a rel="full-article" href="/blog/2018/09/01/intellij-ideade-inspectionsgong-neng/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2018/08/28/server-superglobal/">Server 超级全局变量表</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2018-08-28T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="https://i.loli.net/2018/09/01/5b8a803319eb0.jpg" alt="" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2018/08/28/server-superglobal/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2018/08/27/jQuery-on-methon/">深入理解JQuery中的on方法(事件委派机制)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2018-08-27T00:00:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>12:00 am</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>参考博客：<a href="https://segmentfault.com/a/1190000006652120">https://segmentfault.com/a/1190000006652120</a></p>
-
-<h2>抛出问题：</h2>
-
-<blockquote><p>jquery on()方法和click()等绑定事件监听函数的方法有什么区别?</p></blockquote>
-
-<h2>demo：</h2>
-
-<p>以下实例中原先的 HTML 元素点击其身后的 Delete 按钮就会被删除。而动态添加的 HTML 元素，使用 click() 这种写法，点击 Delete 按钮无法删除；使用 On() 方式可以。</p>
-
-<p><a href="https://c.runoob.com/codedemo/5357">在线演示</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素click&lt;button class=&quot;deleteclick&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#newon&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;动态添加的HTML元素on&lt;button class=&quot;deleteon&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.delete&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.li&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s2">&quot;.deleteon&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">})</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.deleteclick&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2018/08/27/jQuery-on-methon/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/the-big-num-mul/">大数阶乘问题及内存分配的堆和栈区别</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>问题描述：</h2>
-
-<blockquote><p>问题描述</p>
-
-<p>　　输入一个正整数<em>n</em>，输出<em>n</em>!的值。
-　　其中<em>n</em>!=1<em>2</em>3<em>…**n</em>。</p>
-
-<p>算法描述</p>
-
-<p>　　<em>n</em>!可能很大，而计算机能表示的整数范围有限，需要使用高精度计算的方法。使用一个数组<em>A</em>来表示一个大整数<em>a</em>，<em>A</em>[0]表示<em>a</em>的个位，<em>A</em>[1]表示<em>a</em>的十位，依次类推。
-　　将<em>a</em>乘以一个整数<em>k</em>变为将数组<em>A</em>的每一个元素都乘以<em>k</em>，请注意处理相应的进位。
-　　首先将<em>a</em>设为1，然后乘2，乘3，当乘到<em>n</em>时，即得到了<em>n</em>!的值。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/the-big-num-mul/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/Unix-Fork-function/">一道题引出的Unix-Fork函数解析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'><span class="c1">//可产生20个进程，包括main进程</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">()</span><span class="o">&amp;&amp;</span><span class="n">fork</span><span class="p">()</span><span class="o">||</span><span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">fork</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;+  </span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/Unix-Fork-function/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/11/24/Hex2Oct/">十六进制转八进制之大数问题的处理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-11-24T17:19:52+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p><strong>问题描述</strong>
-　　给定n个十六进制正整数，输出它们对应的八进制数。</p>
-
-<p><strong>输入格式</strong>
-　　输入的第一行为一个正整数n （1&lt;=n&lt;=10）。
-　　接下来n行，每行一个由0~9、大写字母A~F组成的字符串，表示要转换的十六进制正整数，每个十六进制数长度不超过100000。</p>
-
-<p><strong>输出格式</strong>
-　　输出n行，每行为输入对应的八进制正整数。</p></blockquote>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/11/24/Hex2Oct/">Read on &rarr;</a>
     </footer>
   
 

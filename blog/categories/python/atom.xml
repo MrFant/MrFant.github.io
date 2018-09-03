@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="https://mrfant.github.io/"/>
+  <updated>2018-09-03T17:20:28+08:00</updated>
+  <id>https://mrfant.github.io/</id>
+  <author>
+    <name><![CDATA[Yii]]></name>
+    <email><![CDATA[yii.fant@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python 全局变量与global关键字]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/"/>
+    <updated>2018-09-03T09:51:37+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi</id>
+    <content type="html"><![CDATA[<p>在python开发使用<strong>全局变量</strong>的时候，会经常遇到一个奇怪的问题：
+如下代码：</p>
+
+<pre><code class="python">num=0;
+def Func():
+    print num
+    num=num+1
+Func()
+</code></pre>
+
+<p>运行后出现这样的错误：</p>
+
+<pre><code>Traceback (most recent call last):
+File "test.py", line 5, in &lt;module&gt;
+    Func()
+File "test.py", line 3, in Func
+    print num
+UnboundLocalError: local variable 'num' referenced before assignment
+</code></pre>
+
+<p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
+分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>
+
+<p>查阅文档之后可知，python的全局变量的作用域是整篇代码，在函数之中可以<strong>引用</strong>全局变量的值，但是如果要<strong>修改</strong>它，就会把它当作函数内部的局部变量。
+要想引用并修改全局变量必须在变量前面加上<code>global关键字</code>:</p>
+
+<pre><code class="python">num=0;
+def Func():
+    // 哪个函数要修改全局变量，都要在函数前声明一下
+    global num
+    print num
+    num=num+1
+Func()
+</code></pre>
+
+<p>但是有一个函数例外，那就是<strong>主函数</strong>：</p>
+
+<pre><code class="python">num=0;
+if __name__=="__main__":
+    //在主函数里可以正常运行，不需global声明
+    print num
+    num=num+1
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

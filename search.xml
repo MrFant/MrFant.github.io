@@ -2,6 +2,36 @@
 <articles>
 
 <article>
+    <title>Spring Security注销logout操作解析</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>Spring security4实现方法级别安全控制[转载]</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>Spring MVC /error映射和自定义方法</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>php连接数据库实的一个不起眼bug</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>Python 全局变量与global关键字</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
     <title>Markdown中插入html代码的坑</title>
     <url>https://mrfant.github.io/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/</url>
     <date>2018-09-02</date>
