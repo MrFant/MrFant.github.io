@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>使用 Java8 Optional 的正确姿势[转载] - YII Fant's Blog</title>
+  <meta name="author" content="Yii">
+
+  
+  <meta name="description" content="原文链接：https://yanbin.blog/proper-ways-of-using-java8-optional/ http://www.importnew.com/22060.html 使用 Java8 Optional 的正确姿势
+2016/10/23 | 分类： 基础技术 | 1 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional">
+  <link href="/heartbeat.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <script src="/javascripts/libs/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css"> -->
+<link href="/stylesheets/googleFonts.css" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<!-- <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="/javascripts/MathJax.js" type="text/javascript"></script>
+
+<link href="/stylesheets/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/custom.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/fontawesome.all.min.css" rel="stylesheet" type="text/css">
+
+
+<script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-scrollTo.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+<script src="/javascripts/back2top.js" type="text/javascript"></script>
+<script src="/javascripts/fontawesome.all.min.js" type="text/javascript"></script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-125076133-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">YII Fant's Blog</a></h1>
+  
+    <h2>Get busy living. Or get busy dying.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/mrfant" rel="subscribe-github" title="@mrfant on GitHub" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+  
+      <form onsubmit="">
+        <fieldset role="search">
+          <input id="J_search" class="search" type="text" name="search" results="0" placeholder="Search" onKeyUp="keyWasUp(event)" />
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/category">Category</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+          <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">使用 Java8 Optional 的正确姿势[转载]</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T21:52:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:52 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>原文链接：<a href="https://yanbin.blog/proper-ways-of-using-java8-optional/">https://yanbin.blog/proper-ways-of-using-java8-optional/</a></p>
+
+<p><a href="http://www.importnew.com/22060.html">http://www.importnew.com/22060.html</a></p>
+
+<!-- more -->
+
+
+<p>使用 Java8 Optional 的正确姿势
+2016/10/23 | 分类： 基础技术 | 1 条评论  | 标签： JAVA8, OPETIONAL
+分享到：
+原文出处： 隔叶黄莺 Unmi Blog
+我们知道 Java 8 增加了一些很有用的 API, 其中一个就是 Optional. 如果对它不稍假探索, 只是轻描淡写的认为它可以优雅的解决 NullPointException 的问题, 于是代码就开始这么写了
+Optional<User> user = ……
+if (user.isPresent()) {
+return user.getOrders();
+} else {
+return Collections.emptyList();
+}
+那么不得不说我们的思维仍然是在原地踏步, 只是本能的认为它不过是 User 实例的包装, 这与我们之前写成
+User user = …..
+if (user != null) {
+return user.getOrders();
+} else {
+return Collections.emptyList();
+}
+实质上是没有任何分别. 这就是我们将要讲到的使用好 Java 8 Optional 类型的正确姿势.
+在里约奥运之时, 新闻一再提起五星红旗有问题, 可是我怎么看都看不出来有什么问题, 后来才道是小星星膜拜中央的姿势不对. 因此我们千万也别对自己习以为常的事情觉得理所当然, 丝毫不会觉得有何不妥, 换句话说也就是当我们切换到 Java 8 的 Optional 时, 不能继承性的对待过往 null 时的那种思维, 应该掌握好新的, 正确的使用 Java 8 Optional 的正确姿势.
+直白的讲, 当我们还在以如下几种方式使用 Optional 时, 就得开始检视自己了
+1. 调用 isPresent() 方法时
+2. 调用 get() 方法时
+3. Optional 类型作为类/实例属性时
+4. Optional 类型作为方法参数时
+isPresent() 与 obj != null 无任何分别, 我们的生活依然在步步惊心. 而没有 isPresent() 作铺垫的 get() 调用在 IntelliJ IDEA 中会收到告警
+Reports calls to java.util.Optional.get() without first checking with a isPresent() call if a value is available. If the Optional does not contain a value, get() will throw an exception. (调用 Optional.get() 前不事先用 isPresent() 检查值是否可用. 假如 Optional 不包含一个值, get() 将会抛出一个异常)
+把 Optional 类型用作属性或是方法参数在 IntelliJ IDEA 中更是强力不推荐的
+Reports any uses of java.util.Optional<T>, java.util.OptionalDouble, java.util.OptionalInt, java.util.OptionalLong or com.google.common.base.Optional as the type for a field or a parameter. Optional was designed to provide a limited mechanism for library method return types where there needed to be a clear way to represent “no result”. Using a field with type java.util.Optional is also problematic if the class needs to be Serializable, which java.util.Optional is not. (使用任何像 Optional 的类型作为字段或方法参数都是不可取的. Optional 只设计为类库方法的, 可明确表示可能无值情况下的返回类型. Optional 类型不可被序列化, 用作字段类型会出问题的)
+所以 Optional 中我们真正可依赖的应该是除了 isPresent() 和 get() 的其他方法:
+1. public<U> Optional<U> map(Function&lt;? super T, ? extends U> mapper)
+2. public T orElse(T other)
+3. public T orElseGet(Supplier&lt;? extends T> other)
+4. public void ifPresent(Consumer&lt;? super T> consumer)
+5. public Optional<T> filter(Predicate&lt;? super T> predicate)
+6. public<U> Optional<U> flatMap(Function&lt;? super T, Optional<U>> mapper)
+7. public <X extends Throwable> T orElseThrow(Supplier&lt;? extends X> exceptionSupplier) throws X
+我略有自信的按照它们大概使用频度对上面的方法排了一下序.
+先又不得不提一下 Optional 的三种构造方式: Optional.of(obj),  Optional.ofNullable(obj) 和明确的 Optional.empty()
+Optional.of(obj): 它要求传入的 obj 不能是 null 值的, 否则还没开始进入角色就倒在了 NullPointerException 异常上了.
+Optional.ofNullable(obj): 它以一种智能的, 宽容的方式来构造一个 Optional 实例. 来者不拒, 传 null 进到就得到 Optional.empty(), 非 null 就调用 Optional.of(obj).
+那是不是我们只要用 Optional.ofNullable(obj) 一劳永逸, 以不变应二变的方式来构造 Optional 实例就行了呢? 那也未必, 否则 Optional.of(obj) 何必如此暴露呢, 私有则可?
+我本人的观点是:  1. 当我们非常非常的明确将要传给 Optional.of(obj) 的 obj 参数不可能为 null 时, 比如它是一个刚 new 出来的对象(Optional.of(new User(&hellip;))), 或者是一个非 null 常量时;  2. 当想为 obj 断言不为 null 时, 即我们想在万一 obj 为 null 立即报告 NullPointException 异常, 立即修改, 而不是隐藏空指针异常时, 我们就应该果断的用 Optional.of(obj) 来构造 Optional 实例, 而不让任何不可预计的 null 值有可乘之机隐身于 Optional 中.
+现在才开始怎么去使用一个已有的 Optional 实例, 假定我们有一个实例 Optional<User> user, 下面是几个普遍的, 应避免 if(user.isPresent()) { &hellip; } else { &hellip; } 几中应用方式.
+存在即返回, 无则提供默认值</p>
+
+<p>1
+2
+return user.orElse(null);  //而不是 return user.isPresent() ? user.get() : null;
+return user.orElse(UNKNOWN_USER);</p>
+
+<p>存在即返回, 无则由函数来产生</p>
+
+<p>1
+return user.orElseGet(() -> fetchAUserFromDatabase()); //而不要 return user.isPresent() ? user: fetchAUserFromDatabase();</p>
+
+<p>存在才对它做点什么</p>
+
+<p>1
+2
+3
+4
+5
+6
+user.ifPresent(System.out::println);</p>
+
+<p>//而不要下边那样
+if (user.isPresent()) {
+  System.out.println(user.get());
+}</p>
+
+<p>map 函数隆重登场</p>
+
+<p>当 user.isPresent() 为真, 获得它关联的 orders, 为假则返回一个空集合时, 我们用上面的 orElse, orElseGet 方法都乏力时, 那原本就是 map 函数的责任, 我们可以这样一行</p>
+
+<p>1
+2
+3
+4
+5
+6
+7
+8
+return user.map(u -> u.getOrders()).orElse(Collections.emptyList())</p>
+
+<p>//上面避免了我们类似 Java 8 之前的做法
+if(user.isPresent()) {
+  return user.get().getOrders();
+} else {
+  return Collections.emptyList();
+}</p>
+
+<p>map  是可能无限级联的, 比如再深一层, 获得用户名的大写形式</p>
+
+<p>1
+2
+3
+return user.map(u -> u.getUsername())
+           .map(name -> name.toUpperCase())
+           .orElse(null);</p>
+
+<p>这要搁在以前, 每一级调用的展开都需要放一个 null 值的判断</p>
+
+<p>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+User user = &hellip;..
+if(user != null) {
+  String name = user.getUsername();
+  if(name != null) {
+    return name.toUpperCase();
+  } else {
+    return null;
+  }
+} else {
+  return null;
+}</p>
+
+<p>针对这方面 Groovy 提供了一种安全的属性/方法访问操作符 ?.</p>
+
+<p>1
+user?.getUsername()?.toUpperCase();</p>
+
+<p>Swift 也有类似的语法, 只作用在  Optional 的类型上.
+用了 isPresent() 处理 NullPointerException 不叫优雅, 有了  orElse, orElseGet 等, 特别是 map 方法才叫优雅.
+其他几个, filter() 把不符合条件的值变为 empty(),  flatMap() 总是与 map() 方法成对的,  orElseThrow() 在有值时直接返回, 无值时抛出想要的异常.
+一句话小结: 使用 Optional 时尽量不直接调用 Optional.get() 方法, Optional.isPresent() 更应该被视为一个私有方法, 应依赖于其他像 Optional.orElse(), Optional.orElseGet(), Optional.map() 等这样的方法.
+最后, 最好的理解 Java 8 Optional 的方法莫过于看它的源代码 java.util.Optional, 阅读了源代码才能真真正正的让你解释起来最有底气, Optional 的方法中基本都是内部调用  isPresent() 判断, 真时处理值, 假时什么也不做.
+参考链接:
+1. Java 8 Optional: How to Use it
+2. Tired of Null Pointer Exceptions? Consider Using Java SE 8′s Optional!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Yii
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-09-03T21:52:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:52 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/reproduce/'>reproduce</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/" title="Previous Post: Spring JPA的@GeneratedValue注解">&laquo; Spring JPA的@GeneratedValue注解</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2018/09/03/mysqlwai-jian-foreign-key-de-shi-yong-li-zi/" title="Next Post: MYSQL外键(Foreign Key)的使用例子[转载]">MYSQL外键(Foreign Key)的使用例子[转载] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Yii -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <a id="J-backTop" href="#" class="toTop" style="position: fixed; bottom: 110px; left: 1120px; display: none;">
+    <i class="fa fa-chevron-up">
+    </i>
+  </a>
+</body>
+</html>

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://mrfant.github.io/blog/2018/09/03/mysqlwai-jian-foreign-key-de-shi-yong-li-zi/</loc>
+<lastmod>2018-09-03T21:57:23+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional/</loc>
+<lastmod>2018-09-03T21:52:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/</loc>
+<lastmod>2018-09-03T21:45:15+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/</loc>
+<lastmod>2018-09-03T21:35:01+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/</loc>
+<lastmod>2018-09-03T21:12:45+08:00</lastmod>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie/</loc>
+<lastmod>2018-09-03T20:17:44+08:00</lastmod>
+</url>
+<url>
 <loc>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/</loc>
 <lastmod>2018-09-03T17:16:02+08:00</lastmod>
 </url>
@@ -13,7 +37,7 @@
 <lastmod>2018-09-03T16:48:36+08:00</lastmod>
 </url>
 <url>
-<loc>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/</loc>
+<loc>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/</loc>
 <lastmod>2018-09-03T16:44:23+08:00</lastmod>
 </url>
 <url>
@@ -108,5 +132,11 @@
 </url>
 <url>
 <loc>https://mrfant.github.io/blog/categories/spring/</loc>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/categories/http/</loc>
+</url>
+<url>
+<loc>https://mrfant.github.io/blog/categories/sql-slash-db/</loc>
 </url>
 </urlset>

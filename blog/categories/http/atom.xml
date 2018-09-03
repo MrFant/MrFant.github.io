@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Spring | YII Fant's Blog]]></title>
-  <link href="https://mrfant.github.io/blog/categories/spring/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Http | YII Fant's Blog]]></title>
+  <link href="https://mrfant.github.io/blog/categories/http/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
   <updated>2018-09-03T22:03:31+08:00</updated>
   <id>https://mrfant.github.io/</id>
@@ -12,100 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Spring JPA的@GeneratedValue注解]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/"/>
-    <updated>2018-09-03T21:45:15+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie</id>
-    <content type="html"><![CDATA[<p>JPA的@GeneratedValue注解,在JPA中,@GeneratedValue注解存在的意义主要就是为一个实体生成一个唯一标识的主键(JPA要求每一个实体Entity,必须有且只有一个主键)。</p>
-
-<p>@GeneratedValue提供了主键的生成策略。@GeneratedValue注解有两个属性,分别是strategy和generator,其中generator属性的值是一个字符串,默认为"&ldquo;,其声明了主键生成器的名称(对应于同名的主键生成器@SequenceGenerator和@TableGenerator)。</p>
-
-<p>JPA为开发人员提供了四种主键生成策略,其被定义在枚举类GenerationType中,包括GenerationType.TABLE,GenerationType.SEQUENCE,GenerationType.IDENTITY和GenerationType.AUTO。</p>
-
-<p>四种生成策略详解：<a href="https://blog.csdn.net/u012493207/article/details/50846616">https://blog.csdn.net/u012493207/article/details/50846616</a></p>
-
-<p>如果使用mysql数据库，如果没有设置生成策略为identity，会默认使用auto会设置为sequence,即，jpa会自动生成一个hibernate_sequence表。</p>
-
-<pre><code>note：也可以不用@GeneratedValue注解，在这种情况下，id需要自己手动设置，这种情况下可以在jpa中来用save方法更新表。
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于jpa实体关系映射Cascade权限的相关笔记]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/"/>
-    <updated>2018-09-03T21:35:01+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji</id>
-    <content type="html"><![CDATA[<p>本篇博文是博主在项目中总结的结论经验，若要加深理解，还需到具体实例中参照实例来解读。</p>
-
-<p>1、在@ManyToMany，@OneToMany,@ManyToOne三个注解中，会在其中的MTM和MTO两个之间注解关系维护方，MTO不能注解为关系被维护方，</p>
-
-<pre><code>也就是说MTO注解没有mappedBy属性。
-</code></pre>
-
-<p>目前来看，多对一和一对多的关系中，只能把“多”的那一方指定为关系维护方。</p>
-
-<p>换句话说也就是MTO注解的就是关系维护方，OTM注解的就是被维护方，需要加上mappedBy注解。</p>
-
-<p>2、在关系维护方中，一般情况下要把Cascade类型设置为All，这样才能拥有对被维护方的创建（persistent）、脱离（detach）和删除（remove）的权限。</p>
-
-<p>而在对被维护方操作的过程中发现，如果没有给被维护方创建（persistent）的Cascade，被维护方几乎毫无作为。</p>
-
-<p>在给了创建权限之后，创建被维护方表的同时也会创建维护方表，但是，这并没有创建关系约束（在MTM中表现为中间表没有创建双方的约束，在MTO（OTM）中表现为维护方表的外键值为null）。</p>
-
-<p>其实，关系被维护方也可以对关联关系进行维护，在有权限的情况下也可以对维护方表进行创建，更新，删除等操作。</p>
-
-<p>有博主的文章说到：</p>
-
-<blockquote><p>被维护方不会主动去维护关联关系。
-真正的关系维护，掌握在维护方的手中。
-维护方对象不能为空，被维护方对象可以为空。</p></blockquote>
-
-<p>待理解。。。。。。。先挖个坑</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring Jpa执行时的一点小问题]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/"/>
-    <updated>2018-09-03T21:12:45+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<p>在使用Spring jpa的时候
-当配置文件项</p>
-
-<pre><code class="java">spring.jpa.hibernate.ddl-auto=create 
-//或 create-drop
-</code></pre>
-
-<p>每次执行项目的时候会出现一个异常：</p>
-
-<pre><code>Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'xgwebdb.xiazai' doesn't exist
-</code></pre>
-
-<p>这是因为每次hibernate建表前要把原先的表删除，即执行类似以下语句：</p>
-
-<pre><code class="sql">Hibernate: drop table if exists authority
-</code></pre>
-
-<p>如果这个表有外建，就要先把外建约束删除，即先执行以下语句：</p>
-
-<pre><code class="sql">Hibernate: alter table xiazai drop foreign key FKtovauwsdqbp01h60ufbs1076f
-</code></pre>
-
-<p>也就是说，Spring jpa在配置项为如上设置时，会执行以下流程：</p>
-
-<pre><code>先把表的外建约束删除，然后删除表，然后再建表，最后建立表的外建约束。
-</code></pre>
-
-<p>这样一来，配置项为create并且是<strong>第一次执行</strong>的时候，数据库里还没有表，就会出现一次这个异常提示。</p>
-
-<p>而配置项为create-drop时，<strong>每次执行</strong>都会报这个异常</p>
-
-<p>这个错误可不去理会，但需要知晓出现的原因</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[RequestDispatcher请求调度接口详解]]></title>
@@ -252,37 +158,6 @@ public class IncludedServlet extends HttpServlet {
 <p>而重定向redirect接口是让浏览器重新发送一个请求，地址栏会发生改变。</p>
 
 <blockquote><p>在Spring MVC里，请求重定向以redirect:开头，请求转发以forward:开头。</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spring Security注销logout操作解析]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/"/>
-    <updated>2018-09-03T17:16:02+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi</id>
-    <content type="html"><![CDATA[<p><img src="https://i.loli.net/2018/09/03/5b8cfc630f43a.png" alt="spring security" />
-<strong>csrf protection is enable default</strong></p>
-
-<pre><code>所以想用get请求来实现注销操作首先要把csrf关掉。
-</code></pre>
-
-<pre><code class="java">http.csrf().disable();
-</code></pre>
-
-<h2>第二种方法：</h2>
-
-<p>不需要关闭csrf，直接调用相关方法：
-就可以用get请求来logout</p>
-
-<pre><code class="java">@RequestMapping(value="/logout", method = RequestMethod.GET)
-public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-   if (auth != null){    
-      new SecurityContextLogoutHandler().logout(request, response, auth);
-   }
-   return "redirect:/login?logout";
-}
-</code></pre>
 ]]></content>
   </entry>
   

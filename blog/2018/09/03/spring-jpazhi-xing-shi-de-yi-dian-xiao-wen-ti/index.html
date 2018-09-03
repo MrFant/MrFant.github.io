@@ -5,25 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Php连接数据库实的一个不起眼bug - YII Fant's Blog</title>
+  <title>Spring Jpa执行时的一点小问题 - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="在安装wordpress连接数据库的时候也出现了这个bug，太难以发觉了 使用mysqli： 1
+  <meta name="description" content="在使用Spring jpa的时候
+当配置文件项 1
 2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-&lt;?php
-$servername = “127.0.0.1”; //这里不能用localhost，必须为数字
-$username = & &hellip;">
+spring.jpa.hibernate.ddl-auto=create
+//或 create-drop 每次执行项目的时候会出现一个异常： Caused by: com.mysql.jdbc.exceptions.jdbc4. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -32,7 +22,7 @@ $username = & &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti">
   <link href="/heartbeat.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -127,7 +117,7 @@ $username = & &hellip;">
   <header>
     
       
-        <h1 class="entry-title">Php连接数据库实的一个不起眼bug</h1>
+        <h1 class="entry-title">Spring Jpa执行时的一点小问题</h1>
       
     
     
@@ -137,7 +127,7 @@ $username = & &hellip;">
 
 
 
-<time class='entry-date' datetime='2018-09-03T16:44:23+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>4:44 pm</span></time>
+<time class='entry-date' datetime='2018-09-03T21:12:45+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:12 pm</span></time>
         
         
       </p>
@@ -145,69 +135,45 @@ $username = & &hellip;">
   </header>
 
 
-<div class="entry-content"><p>在安装<strong>wordpress连接数据库</strong>的时候也出现了这个bug，太难以发觉了</p>
-
-<p>使用mysqli：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
-</span><span class='line'><span class="nv">$servername</span> <span class="o">=</span> <span class="nx">“127</span><span class="o">.</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">1</span><span class="nx">”</span><span class="p">;</span>  <span class="c1">//这里不能用localhost，必须为数字</span>
-</span><span class='line'><span class="nv">$username</span> <span class="o">=</span> <span class="s2">&quot;username”; </span>
-</span><span class='line'><span class="si">$password</span><span class="s2"> = &quot;</span><span class="nx">password”</span><span class="p">;</span>
-</span><span class='line'><span class="c1">// 创建连接</span>
-</span><span class='line'><span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$servername</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
-</span><span class='line'><span class="c1">// 检测连接</span>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;连接失败: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
-</span><span class='line'> <span class="p">}</span>
-</span><span class='line'> <span class="k">echo</span> <span class="s2">&quot;连接成功”;</span>
-</span><span class='line'><span class="s2"> ?&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>同样，使用PDO时：</p>
+<div class="entry-content"><p>在使用Spring jpa的时候
+当配置文件项</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
-</span><span class='line'><span class="nv">$servername</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$username</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">&quot;mysql:host=</span><span class="si">$servername</span><span class="s2">;&quot;</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;连接成功&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">catch</span><span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$e</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">spring</span><span class="o">.</span><span class="na">jpa</span><span class="o">.</span><span class="na">hibernate</span><span class="o">.</span><span class="na">ddl</span><span class="o">-</span><span class="n">auto</span><span class="o">=</span><span class="n">create</span>
+</span><span class='line'><span class="c1">//或 create-drop</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>每次执行项目的时候会出现一个异常：</p>
+
+<pre><code>Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'xgwebdb.xiazai' doesn't exist
+</code></pre>
+
+<p>这是因为每次hibernate建表前要把原先的表删除，即执行类似以下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">Hibernate</span><span class="p">:</span> <span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">authority</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果这个表有外建，就要先把外建约束删除，即先执行以下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">Hibernate</span><span class="p">:</span> <span class="k">alter</span> <span class="k">table</span> <span class="n">xiazai</span> <span class="k">drop</span> <span class="k">foreign</span> <span class="k">key</span> <span class="n">FKtovauwsdqbp01h60ufbs1076f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也就是说，Spring jpa在配置项为如上设置时，会执行以下流程：</p>
+
+<pre><code>先把表的外建约束删除，然后删除表，然后再建表，最后建立表的外建约束。
+</code></pre>
+
+<p>这样一来，配置项为create并且是<strong>第一次执行</strong>的时候，数据库里还没有表，就会出现一次这个异常提示。</p>
+
+<p>而配置项为create-drop时，<strong>每次执行</strong>都会报这个异常</p>
+
+<p>这个错误可不去理会，但需要知晓出现的原因</p>
 </div>
 
 
@@ -230,13 +196,13 @@ $username = & &hellip;">
 
 
 
-<time class='entry-date' datetime='2018-09-03T16:44:23+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>4:44 pm</span></time>
+<time class='entry-date' datetime='2018-09-03T21:12:45+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:12 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/php/'>php</a>
+    <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a>, <a class='category' href='/blog/categories/sql-slash-db/'>sql/db</a>
   
 </span>
 
@@ -245,7 +211,7 @@ $username = & &hellip;">
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/" >Tweet</a>
   
   
   
@@ -254,10 +220,10 @@ $username = & &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/" title="Previous Post: Python 全局变量与global关键字">&laquo; Python 全局变量与global关键字</a>
+        <a class="basic-alignment left" href="/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie/" title="Previous Post: RequestDispatcher请求调度接口详解">&laquo; RequestDispatcher请求调度接口详解</a>
       
       
-        <a class="basic-alignment right" href="/blog/2018/09/03/spring-mvc-slash-errorying-she-he-zi-ding-yi-fang-fa/" title="Next Post: Spring MVC /error映射和自定义方法">Spring MVC /error映射和自定义方法 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/" title="Next Post: 关于jpa实体关系映射Cascade权限的相关笔记">关于jpa实体关系映射Cascade权限的相关笔记 &raquo;</a>
       
     </p>
   </footer>

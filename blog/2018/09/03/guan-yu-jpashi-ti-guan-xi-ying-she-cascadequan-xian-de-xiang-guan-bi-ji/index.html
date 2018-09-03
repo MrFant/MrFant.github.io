@@ -5,20 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python 全局变量与global关键字 - YII Fant's Blog</title>
+  <title>关于jpa实体关系映射Cascade权限的相关笔记 - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="在python开发使用全局变量的时候，会经常遇到一个奇怪的问题：
-如下代码： 1
-2
-3
-4
-5
-num=0;
-def Func(): print num num=num+1
-Func() 运行后出现这样的错误： Traceback (most recent call last):
-File " &hellip;">
+  <meta name="description" content="本篇博文是博主在项目中总结的结论经验，若要加深理解，还需到具体实例中参照实例来解读。 1、在@ManyToMany，@OneToMany,@ManyToOne三个注解中，会在其中的MTM和MTO两个之间注解关系维护方，MTO不能注解为关系被维护方， 也就是说MTO注解没有mappedBy属性。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -27,7 +18,7 @@ File " &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi">
+  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji">
   <link href="/heartbeat.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -122,7 +113,7 @@ File " &hellip;">
   <header>
     
       
-        <h1 class="entry-title">Python 全局变量与global关键字</h1>
+        <h1 class="entry-title">关于jpa实体关系映射Cascade权限的相关笔记</h1>
       
     
     
@@ -132,7 +123,7 @@ File " &hellip;">
 
 
 
-<time class='entry-date' datetime='2018-09-03T09:51:37+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:51 am</span></time>
+<time class='entry-date' datetime='2018-09-03T21:35:01+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:35 pm</span></time>
         
         
       </p>
@@ -140,74 +131,32 @@ File " &hellip;">
   </header>
 
 
-<div class="entry-content"><p>在python开发使用<strong>全局变量</strong>的时候，会经常遇到一个奇怪的问题：
-如下代码：</p>
+<div class="entry-content"><p>本篇博文是博主在项目中总结的结论经验，若要加深理解，还需到具体实例中参照实例来解读。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'><span class="n">Func</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>1、在@ManyToMany，@OneToMany,@ManyToOne三个注解中，会在其中的MTM和MTO两个之间注解关系维护方，MTO不能注解为关系被维护方，</p>
 
-
-<p>运行后出现这样的错误：</p>
-
-<pre><code>Traceback (most recent call last):
-File "test.py", line 5, in &lt;module&gt;
-    Func()
-File "test.py", line 3, in Func
-    print num
-UnboundLocalError: local variable 'num' referenced before assignment
+<pre><code>也就是说MTO注解没有mappedBy属性。
 </code></pre>
 
-<!-- more -->
+<p>目前来看，多对一和一对多的关系中，只能把“多”的那一方指定为关系维护方。</p>
 
+<p>换句话说也就是MTO注解的就是关系维护方，OTM注解的就是被维护方，需要加上mappedBy注解。</p>
 
-<p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
-分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>
+<p>2、在关系维护方中，一般情况下要把Cascade类型设置为All，这样才能拥有对被维护方的创建（persistent）、脱离（detach）和删除（remove）的权限。</p>
 
-<p>查阅文档之后可知，python的全局变量的作用域是整篇代码，在函数之中可以<strong>引用</strong>全局变量的值，但是如果要<strong>修改</strong>它，就会把它当作函数内部的局部变量。
-要想引用并修改全局变量必须在变量前面加上<code>global关键字</code>:</p>
+<p>而在对被维护方操作的过程中发现，如果没有给被维护方创建（persistent）的Cascade，被维护方几乎毫无作为。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
-</span><span class='line'>    <span class="o">//</span> <span class="err">哪个函数要修改全局变量，都要在函数前声明一下</span>
-</span><span class='line'>    <span class="k">global</span> <span class="n">num</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'><span class="n">Func</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>在给了创建权限之后，创建被维护方表的同时也会创建维护方表，但是，这并没有创建关系约束（在MTM中表现为中间表没有创建双方的约束，在MTO（OTM）中表现为维护方表的外键值为null）。</p>
 
+<p>其实，关系被维护方也可以对关联关系进行维护，在有权限的情况下也可以对维护方表进行创建，更新，删除等操作。</p>
 
-<p>但是有一个函数例外，那就是<strong>主函数</strong>：</p>
+<p>有博主的文章说到：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="o">//</span><span class="err">在主函数里可以正常运行，不需</span><span class="k">global</span><span class="err">声明</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>被维护方不会主动去维护关联关系。
+真正的关系维护，掌握在维护方的手中。
+维护方对象不能为空，被维护方对象可以为空。</p></blockquote>
 
-
-
+<p>待理解。。。。。。。先挖个坑</p>
 </div>
 
 
@@ -230,13 +179,13 @@ UnboundLocalError: local variable 'num' referenced before assignment
 
 
 
-<time class='entry-date' datetime='2018-09-03T09:51:37+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:51 am</span></time>
+<time class='entry-date' datetime='2018-09-03T21:35:01+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:35 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a>, <a class='category' href='/blog/categories/sql-slash-db/'>sql/db</a>
   
 </span>
 
@@ -245,7 +194,7 @@ UnboundLocalError: local variable 'num' referenced before assignment
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/" >Tweet</a>
   
   
   
@@ -254,10 +203,10 @@ UnboundLocalError: local variable 'num' referenced before assignment
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/" title="Previous Post: Markdown中插入html代码的坑">&laquo; Markdown中插入html代码的坑</a>
+        <a class="basic-alignment left" href="/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/" title="Previous Post: Spring jpa执行时的一点小问题">&laquo; Spring jpa执行时的一点小问题</a>
       
       
-        <a class="basic-alignment right" href="/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/" title="Next Post: php连接数据库时的一个不起眼bug">php连接数据库时的一个不起眼bug &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/" title="Next Post: Spring JPA的@GeneratedValue注解">Spring JPA的@GeneratedValue注解 &raquo;</a>
       
     </p>
   </footer>

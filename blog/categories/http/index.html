@@ -5,20 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python 全局变量与global关键字 - YII Fant's Blog</title>
+  <title>Category: Http - YII Fant's Blog</title>
   <meta name="author" content="Yii">
 
   
-  <meta name="description" content="在python开发使用全局变量的时候，会经常遇到一个奇怪的问题：
-如下代码： 1
-2
-3
-4
-5
-num=0;
-def Func(): print num num=num+1
-Func() 运行后出现这样的错误： Traceback (most recent call last):
-File " &hellip;">
+  <meta name="description" content="Category: http">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -27,7 +18,7 @@ File " &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi">
+  <link rel="canonical" href="https://mrfant.github.io/blog/categories/http">
   <link href="/heartbeat.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="YII Fant's Blog" type="application/atom+xml">
@@ -117,154 +108,46 @@ File " &hellip;">
   <div id="main">
     <div id="content">
           <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      
-        <h1 class="entry-title">Python 全局变量与global关键字</h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2018-09-03T09:51:37+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:51 am</span></time>
-        
-        
-      </p>
+    <h1 class="entry-title">Category: Http</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>在python开发使用<strong>全局变量</strong>的时候，会经常遇到一个奇怪的问题：
-如下代码：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'><span class="n">Func</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+  
+  <h2>2018</h2>
+
+<article>
+  
+<h1><a href="/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie/">RequestDispatcher请求调度接口详解</a></h1>
+<time datetime="2018-09-03T20:17:44+08:00" pubdate><span class='month'>Sep</span> <span class='day'>03</span> <span class='year'>2018</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/http/'>http</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/spring/'>spring</a></span>
+</footer>
 
 
-<p>运行后出现这样的错误：</p>
-
-<pre><code>Traceback (most recent call last):
-File "test.py", line 5, in &lt;module&gt;
-    Func()
-File "test.py", line 3, in Func
-    print num
-UnboundLocalError: local variable 'num' referenced before assignment
-</code></pre>
-
-<!-- more -->
-
-
-<p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
-分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>
-
-<p>查阅文档之后可知，python的全局变量的作用域是整篇代码，在函数之中可以<strong>引用</strong>全局变量的值，但是如果要<strong>修改</strong>它，就会把它当作函数内部的局部变量。
-要想引用并修改全局变量必须在变量前面加上<code>global关键字</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">Func</span><span class="p">():</span>
-</span><span class='line'>    <span class="o">//</span> <span class="err">哪个函数要修改全局变量，都要在函数前声明一下</span>
-</span><span class='line'>    <span class="k">global</span> <span class="n">num</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'><span class="n">Func</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是有一个函数例外，那就是<strong>主函数</strong>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="o">//</span><span class="err">在主函数里可以正常运行，不需</span><span class="k">global</span><span class="err">声明</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+</article>
 
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-
-
-  <span class="byline author vcard">Authored by <span class="fn">
-  
-    Yii
-  
-  </span></span>
-
-
-      
-
-
-
-
-<time class='entry-date' datetime='2018-09-03T09:51:37+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>9:51 am</span></time>
-      
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/python/'>python</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/" data-via="" data-counturl="https://mrfant.github.io/blog/2018/09/03/python-quan-ju-bian-liang-yu-globalguan-jian-zi/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2018/09/02/markdownzhong-cha-ru-htmldai-ma-de-keng/" title="Previous Post: Markdown中插入html代码的坑">&laquo; Markdown中插入html代码的坑</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/" title="Next Post: php连接数据库时的一个不起眼bug">php连接数据库时的一个不起眼bug &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 
 </div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
 
     </div>
   </div>

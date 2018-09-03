@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-03T17:20:28+08:00</updated>
+  <updated>2018-09-03T22:03:31+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -37,6 +37,9 @@ File "test.py", line 3, in Func
     print num
 UnboundLocalError: local variable 'num' referenced before assignment
 </code></pre>
+
+<!-- more -->
+
 
 <p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
 分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>

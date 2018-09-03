@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Php | YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/blog/categories/php/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-03T17:20:28+08:00</updated>
+  <updated>2018-09-03T22:03:31+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Php连接数据库实的一个不起眼bug]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/"/>
+    <title type="html"><![CDATA[Php连接数据库时的一个不起眼bug]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/"/>
     <updated>2018-09-03T16:44:23+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-[?]-ge-bu-qi-yan-bug</id>
+    <id>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug</id>
     <content type="html"><![CDATA[<p>在安装<strong>wordpress连接数据库</strong>的时候也出现了这个bug，太难以发觉了</p>
 
 <p>使用mysqli：</p>
@@ -35,6 +35,9 @@ if ($conn-&gt;connect_error) {
  echo "连接成功”;
  ?&gt;
 </code></pre>
+
+<!-- more -->
+
 
 <p>同样，使用PDO时：</p>
 

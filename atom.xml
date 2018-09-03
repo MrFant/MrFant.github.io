@@ -4,7 +4,7 @@
   <title><![CDATA[YII Fant's Blog]]></title>
   <link href="https://mrfant.github.io/atom.xml" rel="self"/>
   <link href="https://mrfant.github.io/"/>
-  <updated>2018-09-03T17:20:28+08:00</updated>
+  <updated>2018-09-03T22:03:31+08:00</updated>
   <id>https://mrfant.github.io/</id>
   <author>
     <name><![CDATA[Yii]]></name>
@@ -12,6 +12,550 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MYSQL外键(Foreign Key)的使用例子[转载]]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/mysqlwai-jian-foreign-key-de-shi-yong-li-zi/"/>
+    <updated>2018-09-03T21:57:23+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/mysqlwai-jian-foreign-key-de-shi-yong-li-zi</id>
+    <content type="html"><![CDATA[<p>原文链接：<a href="http://www.cppblog.com/wolf/articles/69089.html">http://www.cppblog.com/wolf/articles/69089.html</a></p>
+
+<p>在MySQL 3.23.44版本后，InnoDB引擎类型的表支持了外键约束。
+外键的使用条件：
+1.两个表必须是InnoDB表，MyISAM表暂时不支持外键（据说以后的版本有可能支持，但至少目前不支持）；
+2.外键列必须建立了索引，MySQL 4.1.2以后的版本在建立外键时会自动创建索引，但如果在较早的版本则需要显示建立；
+3.外键关系的两个表的列必须是数据类型相似，也就是可以相互转换类型的列，比如int和tinyint可以，而int和char则不可以；</p>
+
+<p>外键的好处：可以使得两张表关联，保证数据的一致性和实现一些级联操作；</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Java8 Optional 的正确姿势[转载]]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional/"/>
+    <updated>2018-09-03T21:52:00+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional</id>
+    <content type="html"><![CDATA[<p>原文链接：<a href="https://yanbin.blog/proper-ways-of-using-java8-optional/">https://yanbin.blog/proper-ways-of-using-java8-optional/</a></p>
+
+<p><a href="http://www.importnew.com/22060.html">http://www.importnew.com/22060.html</a></p>
+
+<!-- more -->
+
+
+<p>使用 Java8 Optional 的正确姿势
+2016/10/23 | 分类： 基础技术 | 1 条评论  | 标签： JAVA8, OPETIONAL
+分享到：
+原文出处： 隔叶黄莺 Unmi Blog
+我们知道 Java 8 增加了一些很有用的 API, 其中一个就是 Optional. 如果对它不稍假探索, 只是轻描淡写的认为它可以优雅的解决 NullPointException 的问题, 于是代码就开始这么写了
+Optional<User> user = ……
+if (user.isPresent()) {
+return user.getOrders();
+} else {
+return Collections.emptyList();
+}
+那么不得不说我们的思维仍然是在原地踏步, 只是本能的认为它不过是 User 实例的包装, 这与我们之前写成
+User user = …..
+if (user != null) {
+return user.getOrders();
+} else {
+return Collections.emptyList();
+}
+实质上是没有任何分别. 这就是我们将要讲到的使用好 Java 8 Optional 类型的正确姿势.
+在里约奥运之时, 新闻一再提起五星红旗有问题, 可是我怎么看都看不出来有什么问题, 后来才道是小星星膜拜中央的姿势不对. 因此我们千万也别对自己习以为常的事情觉得理所当然, 丝毫不会觉得有何不妥, 换句话说也就是当我们切换到 Java 8 的 Optional 时, 不能继承性的对待过往 null 时的那种思维, 应该掌握好新的, 正确的使用 Java 8 Optional 的正确姿势.
+直白的讲, 当我们还在以如下几种方式使用 Optional 时, 就得开始检视自己了
+1. 调用 isPresent() 方法时
+2. 调用 get() 方法时
+3. Optional 类型作为类/实例属性时
+4. Optional 类型作为方法参数时
+isPresent() 与 obj != null 无任何分别, 我们的生活依然在步步惊心. 而没有 isPresent() 作铺垫的 get() 调用在 IntelliJ IDEA 中会收到告警
+Reports calls to java.util.Optional.get() without first checking with a isPresent() call if a value is available. If the Optional does not contain a value, get() will throw an exception. (调用 Optional.get() 前不事先用 isPresent() 检查值是否可用. 假如 Optional 不包含一个值, get() 将会抛出一个异常)
+把 Optional 类型用作属性或是方法参数在 IntelliJ IDEA 中更是强力不推荐的
+Reports any uses of java.util.Optional<T>, java.util.OptionalDouble, java.util.OptionalInt, java.util.OptionalLong or com.google.common.base.Optional as the type for a field or a parameter. Optional was designed to provide a limited mechanism for library method return types where there needed to be a clear way to represent “no result”. Using a field with type java.util.Optional is also problematic if the class needs to be Serializable, which java.util.Optional is not. (使用任何像 Optional 的类型作为字段或方法参数都是不可取的. Optional 只设计为类库方法的, 可明确表示可能无值情况下的返回类型. Optional 类型不可被序列化, 用作字段类型会出问题的)
+所以 Optional 中我们真正可依赖的应该是除了 isPresent() 和 get() 的其他方法:
+1. public<U> Optional<U> map(Function&lt;? super T, ? extends U> mapper)
+2. public T orElse(T other)
+3. public T orElseGet(Supplier&lt;? extends T> other)
+4. public void ifPresent(Consumer&lt;? super T> consumer)
+5. public Optional<T> filter(Predicate&lt;? super T> predicate)
+6. public<U> Optional<U> flatMap(Function&lt;? super T, Optional<U>> mapper)
+7. public <X extends Throwable> T orElseThrow(Supplier&lt;? extends X> exceptionSupplier) throws X
+我略有自信的按照它们大概使用频度对上面的方法排了一下序.
+先又不得不提一下 Optional 的三种构造方式: Optional.of(obj),  Optional.ofNullable(obj) 和明确的 Optional.empty()
+Optional.of(obj): 它要求传入的 obj 不能是 null 值的, 否则还没开始进入角色就倒在了 NullPointerException 异常上了.
+Optional.ofNullable(obj): 它以一种智能的, 宽容的方式来构造一个 Optional 实例. 来者不拒, 传 null 进到就得到 Optional.empty(), 非 null 就调用 Optional.of(obj).
+那是不是我们只要用 Optional.ofNullable(obj) 一劳永逸, 以不变应二变的方式来构造 Optional 实例就行了呢? 那也未必, 否则 Optional.of(obj) 何必如此暴露呢, 私有则可?
+我本人的观点是:  1. 当我们非常非常的明确将要传给 Optional.of(obj) 的 obj 参数不可能为 null 时, 比如它是一个刚 new 出来的对象(Optional.of(new User(&hellip;))), 或者是一个非 null 常量时;  2. 当想为 obj 断言不为 null 时, 即我们想在万一 obj 为 null 立即报告 NullPointException 异常, 立即修改, 而不是隐藏空指针异常时, 我们就应该果断的用 Optional.of(obj) 来构造 Optional 实例, 而不让任何不可预计的 null 值有可乘之机隐身于 Optional 中.
+现在才开始怎么去使用一个已有的 Optional 实例, 假定我们有一个实例 Optional<User> user, 下面是几个普遍的, 应避免 if(user.isPresent()) { &hellip; } else { &hellip; } 几中应用方式.
+存在即返回, 无则提供默认值</p>
+
+<p>1
+2
+return user.orElse(null);  //而不是 return user.isPresent() ? user.get() : null;
+return user.orElse(UNKNOWN_USER);</p>
+
+<p>存在即返回, 无则由函数来产生</p>
+
+<p>1
+return user.orElseGet(() -> fetchAUserFromDatabase()); //而不要 return user.isPresent() ? user: fetchAUserFromDatabase();</p>
+
+<p>存在才对它做点什么</p>
+
+<p>1
+2
+3
+4
+5
+6
+user.ifPresent(System.out::println);</p>
+
+<p>//而不要下边那样
+if (user.isPresent()) {
+  System.out.println(user.get());
+}</p>
+
+<p>map 函数隆重登场</p>
+
+<p>当 user.isPresent() 为真, 获得它关联的 orders, 为假则返回一个空集合时, 我们用上面的 orElse, orElseGet 方法都乏力时, 那原本就是 map 函数的责任, 我们可以这样一行</p>
+
+<p>1
+2
+3
+4
+5
+6
+7
+8
+return user.map(u -> u.getOrders()).orElse(Collections.emptyList())</p>
+
+<p>//上面避免了我们类似 Java 8 之前的做法
+if(user.isPresent()) {
+  return user.get().getOrders();
+} else {
+  return Collections.emptyList();
+}</p>
+
+<p>map  是可能无限级联的, 比如再深一层, 获得用户名的大写形式</p>
+
+<p>1
+2
+3
+return user.map(u -> u.getUsername())
+           .map(name -> name.toUpperCase())
+           .orElse(null);</p>
+
+<p>这要搁在以前, 每一级调用的展开都需要放一个 null 值的判断</p>
+
+<p>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+User user = &hellip;..
+if(user != null) {
+  String name = user.getUsername();
+  if(name != null) {
+    return name.toUpperCase();
+  } else {
+    return null;
+  }
+} else {
+  return null;
+}</p>
+
+<p>针对这方面 Groovy 提供了一种安全的属性/方法访问操作符 ?.</p>
+
+<p>1
+user?.getUsername()?.toUpperCase();</p>
+
+<p>Swift 也有类似的语法, 只作用在  Optional 的类型上.
+用了 isPresent() 处理 NullPointerException 不叫优雅, 有了  orElse, orElseGet 等, 特别是 map 方法才叫优雅.
+其他几个, filter() 把不符合条件的值变为 empty(),  flatMap() 总是与 map() 方法成对的,  orElseThrow() 在有值时直接返回, 无值时抛出想要的异常.
+一句话小结: 使用 Optional 时尽量不直接调用 Optional.get() 方法, Optional.isPresent() 更应该被视为一个私有方法, 应依赖于其他像 Optional.orElse(), Optional.orElseGet(), Optional.map() 等这样的方法.
+最后, 最好的理解 Java 8 Optional 的方法莫过于看它的源代码 java.util.Optional, 阅读了源代码才能真真正正的让你解释起来最有底气, Optional 的方法中基本都是内部调用  isPresent() 判断, 真时处理值, 假时什么也不做.
+参考链接:
+1. Java 8 Optional: How to Use it
+2. Tired of Null Pointer Exceptions? Consider Using Java SE 8′s Optional!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring JPA的@GeneratedValue注解]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/"/>
+    <updated>2018-09-03T21:45:15+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie</id>
+    <content type="html"><![CDATA[<p>JPA的@GeneratedValue注解,在JPA中,@GeneratedValue注解存在的意义主要就是为一个实体生成一个唯一标识的主键(JPA要求每一个实体Entity,必须有且只有一个主键)。</p>
+
+<p>@GeneratedValue提供了主键的生成策略。@GeneratedValue注解有两个属性,分别是strategy和generator,其中generator属性的值是一个字符串,默认为"&ldquo;,其声明了主键生成器的名称(对应于同名的主键生成器@SequenceGenerator和@TableGenerator)。</p>
+
+<p>JPA为开发人员提供了四种主键生成策略,其被定义在枚举类GenerationType中,包括GenerationType.TABLE,GenerationType.SEQUENCE,GenerationType.IDENTITY和GenerationType.AUTO。</p>
+
+<p>四种生成策略详解：<a href="https://blog.csdn.net/u012493207/article/details/50846616">https://blog.csdn.net/u012493207/article/details/50846616</a></p>
+
+<p>如果使用mysql数据库，如果没有设置生成策略为identity，会默认使用auto会设置为sequence,即，jpa会自动生成一个hibernate_sequence表。</p>
+
+<pre><code>note：也可以不用@GeneratedValue注解，在这种情况下，id需要自己手动设置，这种情况下可以在jpa中来用save方法更新表。
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于jpa实体关系映射Cascade权限的相关笔记]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/"/>
+    <updated>2018-09-03T21:35:01+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji</id>
+    <content type="html"><![CDATA[<p>本篇博文是博主在项目中总结的结论经验，若要加深理解，还需到具体实例中参照实例来解读。</p>
+
+<p>1、在@ManyToMany，@OneToMany,@ManyToOne三个注解中，会在其中的MTM和MTO两个之间注解关系维护方，MTO不能注解为关系被维护方，</p>
+
+<pre><code>也就是说MTO注解没有mappedBy属性。
+</code></pre>
+
+<p>目前来看，多对一和一对多的关系中，只能把“多”的那一方指定为关系维护方。</p>
+
+<p>换句话说也就是MTO注解的就是关系维护方，OTM注解的就是被维护方，需要加上mappedBy注解。</p>
+
+<p>2、在关系维护方中，一般情况下要把Cascade类型设置为All，这样才能拥有对被维护方的创建（persistent）、脱离（detach）和删除（remove）的权限。</p>
+
+<p>而在对被维护方操作的过程中发现，如果没有给被维护方创建（persistent）的Cascade，被维护方几乎毫无作为。</p>
+
+<p>在给了创建权限之后，创建被维护方表的同时也会创建维护方表，但是，这并没有创建关系约束（在MTM中表现为中间表没有创建双方的约束，在MTO（OTM）中表现为维护方表的外键值为null）。</p>
+
+<p>其实，关系被维护方也可以对关联关系进行维护，在有权限的情况下也可以对维护方表进行创建，更新，删除等操作。</p>
+
+<p>有博主的文章说到：</p>
+
+<blockquote><p>被维护方不会主动去维护关联关系。
+真正的关系维护，掌握在维护方的手中。
+维护方对象不能为空，被维护方对象可以为空。</p></blockquote>
+
+<p>待理解。。。。。。。先挖个坑</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spring Jpa执行时的一点小问题]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/"/>
+    <updated>2018-09-03T21:12:45+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti</id>
+    <content type="html"><![CDATA[<p>在使用Spring jpa的时候
+当配置文件项</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">spring</span><span class="o">.</span><span class="na">jpa</span><span class="o">.</span><span class="na">hibernate</span><span class="o">.</span><span class="na">ddl</span><span class="o">-</span><span class="n">auto</span><span class="o">=</span><span class="n">create</span>
+</span><span class='line'><span class="c1">//或 create-drop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>每次执行项目的时候会出现一个异常：</p>
+
+<pre><code>Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'xgwebdb.xiazai' doesn't exist
+</code></pre>
+
+<p>这是因为每次hibernate建表前要把原先的表删除，即执行类似以下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">Hibernate</span><span class="p">:</span> <span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">authority</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果这个表有外建，就要先把外建约束删除，即先执行以下语句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">Hibernate</span><span class="p">:</span> <span class="k">alter</span> <span class="k">table</span> <span class="n">xiazai</span> <span class="k">drop</span> <span class="k">foreign</span> <span class="k">key</span> <span class="n">FKtovauwsdqbp01h60ufbs1076f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也就是说，Spring jpa在配置项为如上设置时，会执行以下流程：</p>
+
+<pre><code>先把表的外建约束删除，然后删除表，然后再建表，最后建立表的外建约束。
+</code></pre>
+
+<p>这样一来，配置项为create并且是<strong>第一次执行</strong>的时候，数据库里还没有表，就会出现一次这个异常提示。</p>
+
+<p>而配置项为create-drop时，<strong>每次执行</strong>都会报这个异常</p>
+
+<p>这个错误可不去理会，但需要知晓出现的原因</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RequestDispatcher请求调度接口详解]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie/"/>
+    <updated>2018-09-03T20:17:44+08:00</updated>
+    <id>https://mrfant.github.io/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie</id>
+    <content type="html"><![CDATA[<p>RequestDispatcher 接口,通常这个接口的译名是“请求转发接口”，但是这个译名不准确，也容易让人以为这个接口只能“转发”。</p>
+
+<blockquote><p>其实RequestDispatcher接口具有<strong>请求转发</strong>（forward）和<strong>请求包含</strong>（include）两种方法，两种方法略有差异，所以我喜欢把这个接口称为请求调度，以区别它的接口方法。</p></blockquote>
+
+<h3>请求转发（forward）</h3>
+
+<p>先看实例：</p>
+
+<figure class='code'><figcaption><span>RequestForwardServlet.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * RequestDispatcher 接口具有请求转发（forward）和请求包含（include）两种方法</span>
+</span><span class='line'><span class="cm"> * 由于转发的是同一个request请求，所以可以在该请求中设置参数来传递数据</span>
+</span><span class='line'><span class="cm"> * 当前代码使用forward转发请求，由转发后的ResultServlet显示结果可知，</span>
+</span><span class='line'><span class="cm"> * 请求转发forward会改变uri，queryString根据getRequestDispatcher()函数的方法而变。</span>
+</span><span class='line'><span class="cm"> * note：但是请求转发不会改变浏览器URL地址栏。</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">itcast</span><span class="o">.</span><span class="na">chapter04</span><span class="o">.</span><span class="na">request</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.http.*</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RequestForwardServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span>  <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html;charset=utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">// 将数据存储到request对象中</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">,</span> <span class="s">&quot;北京传智播客教育有限公司&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">// 从request接口中获取请求调度类实例</span>
+</span><span class='line'>        <span class="n">RequestDispatcher</span> <span class="n">dispatcher</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/ResultServlet?p1=123&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">dispatcher</span><span class="o">.</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span>ResultServlet.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * output:</span>
+</span><span class='line'><span class="cm"> URI:/ResultServlet</span>
+</span><span class='line'><span class="cm"> QueryString:p1=123</span>
+</span><span class='line'><span class="cm"> parameter p1:123</span>
+</span><span class='line'><span class="cm"> 公司名称：北京传智播客教育有限公司</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">itcast</span><span class="o">.</span><span class="na">chapter04</span><span class="o">.</span><span class="na">request</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.http.*</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResultServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html;charset=utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="c1">// 获取PrintWriter对象用于输出信息</span>
+</span><span class='line'>        <span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;URI:&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;QueryString:&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getQueryString</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;parameter p1:&quot;</span> <span class="o">+</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;p1&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="c1">// 获取request请求对象中保存的数据</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">company</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&quot;company&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">company</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;公司名称：&quot;</span> <span class="o">+</span> <span class="n">company</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>请求包含（include）</h3>
+
+<figure class='code'><figcaption><span>IncludingServlet.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 当前代码使用include请求包含，由转发后的IncludedServlet显示结果可知，</span>
+</span><span class='line'><span class="cm"> * 请求包含不会改变uri，queryString,还是including类的值。</span>
+</span><span class='line'><span class="cm"> * 还由于在本代码中注释掉了ContentType的设置，所以最后输出的是纯文本（非html）并且中文显示为乱码，</span>
+</span><span class='line'><span class="cm"> * 即使在Included代码中设置了也没用，因为在那之前response对象已经生成。</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">itcast</span><span class="o">.</span><span class="na">chapter04</span><span class="o">.</span><span class="na">request</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.http.*</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IncludingServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'><span class="c1">//       response.setContentType(&quot;text/html;charset=utf-8&quot;);</span>
+</span><span class='line'>      <span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">RequestDispatcher</span> <span class="n">rd</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>                  <span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/IncludedServlet?p1=abc&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;before including&quot;</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">rd</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;after including&quot;</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>IncludedServlet.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * output:</span>
+</span><span class='line'><span class="cm"> * before including&lt;br&gt;</span>
+</span><span class='line'><span class="cm"> * ??&lt;br&gt;           &lt;---乱码</span>
+</span><span class='line'><span class="cm"> * URI:/IncludingServlet&lt;br&gt;</span>
+</span><span class='line'><span class="cm"> * QueryString:null&lt;br&gt;</span>
+</span><span class='line'><span class="cm"> * parameter p1:abc&lt;br&gt;</span>
+</span><span class='line'><span class="cm"> * after including&lt;br&gt;</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">itcast</span><span class="o">.</span><span class="na">chapter04</span><span class="o">.</span><span class="na">request</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">javax.servlet.http.*</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IncludedServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// 设置响应时使用的字符编码</span>
+</span><span class='line'>      <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html;charset=utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">response</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'>        <span class="c1">// 在被包含的类中，request获取的那些参数都是原来主动包含类的值，但是parameter除外</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;中国&quot;</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;URI:&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;QueryString:&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getQueryString</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;parameter p1:&quot;</span> <span class="o">+</span>
+</span><span class='line'>                       <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;p1&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&lt;br&gt;&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+</span><span class='line'>        <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span><span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>请求调度接口的实质是转发同一个请求给别的servlet处理，处理的是同一个请求，所以浏览器地址栏不会改变。</p>
+
+<p>而重定向redirect接口是让浏览器重新发送一个请求，地址栏会发生改变。</p>
+
+<blockquote><p>在Spring MVC里，请求重定向以redirect:开头，请求转发以forward:开头。</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring Security注销logout操作解析]]></title>
@@ -29,8 +573,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>第二种方法：
-不需要关闭csrf，直接调用相关方法：
+<h2>第二种方法：</h2>
+
+<p>不需要关闭csrf，直接调用相关方法：
 就可以用get请求来logout</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -59,8 +604,9 @@
     <link href="https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi/"/>
     <updated>2018-09-03T16:54:42+08:00</updated>
     <id>https://mrfant.github.io/blog/2018/09/03/spring-security4shi-xian-fang-fa-ji-bie-an-quan-kong-zhi</id>
-    <content type="html"><![CDATA[<p>原文地址： <a href="http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/">http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/</a>
-译文地址： <a href="https://blog.csdn.net/w605283073/article/details/51327182">https://blog.csdn.net/w605283073/article/details/51327182</a></p>
+    <content type="html"><![CDATA[<p>原文地址： <a href="http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/">http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/</a></p>
+
+<p>译文地址： <a href="https://blog.csdn.net/w605283073/article/details/51327182">https://blog.csdn.net/w605283073/article/details/51327182</a></p>
 
 <p><code>@Secured</code> 注解不能指定AND这个条件，比如指定某个方法只能被拥有ADMIN和DBA身份的用户调用。
 但是用<code>@PreAuthorize/@PostAuthorize</code>注解可以实现，这两个注解支持<strong>Spring EL</strong></p>
@@ -81,6 +627,11 @@
 
 <p>自定义的异常处理参考这篇博客：
 <a href="http://blog.didispace.com/springbootexception/">http://blog.didispace.com/springbootexception/</a></p>
+
+<!-- more -->
+
+
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -140,10 +691,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Php连接数据库实的一个不起眼bug]]></title>
-    <link href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/"/>
+    <title type="html"><![CDATA[Php连接数据库时的一个不起眼bug]]></title>
+    <link href="https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/"/>
     <updated>2018-09-03T16:44:23+08:00</updated>
-    <id>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-[?]-ge-bu-qi-yan-bug</id>
+    <id>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug</id>
     <content type="html"><![CDATA[<p>在安装<strong>wordpress连接数据库</strong>的时候也出现了这个bug，太难以发觉了</p>
 
 <p>使用mysqli：</p>
@@ -173,6 +724,9 @@
 </span><span class='line'> <span class="k">echo</span> <span class="s2">&quot;连接成功”;</span>
 </span><span class='line'><span class="s2"> ?&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
 
 
 <p>同样，使用PDO时：</p>
@@ -240,6 +794,9 @@ File "test.py", line 3, in Func
     print num
 UnboundLocalError: local variable 'num' referenced before assignment
 </code></pre>
+
+<!-- more -->
+
 
 <p>意思是 num是一个局部变量，并且在赋值前就引用的错误。
 分析可知，python解释器并没有将num变量当作一个全局变量，而是函数内部的局部变量。</p>
@@ -962,350 +1519,6 @@ $(function(){});        //$()里面一个匿名函数
 
 <!-- more -->
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[十六进制转八进制之大数问题的处理]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/Hex2Oct/"/>
-    <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/Hex2Oct</id>
-    <content type="html"><![CDATA[<blockquote><p><strong>问题描述</strong>
-　　给定n个十六进制正整数，输出它们对应的八进制数。</p>
-
-<p><strong>输入格式</strong>
-　　输入的第一行为一个正整数n （1&lt;=n&lt;=10）。
-　　接下来n行，每行一个由0~9、大写字母A~F组成的字符串，表示要转换的十六进制正整数，每个十六进制数长度不超过100000。</p>
-
-<p><strong>输出格式</strong>
-　　输出n行，每行为输入对应的八进制正整数。</p></blockquote>
-
-<!-- more -->
-
-
-<blockquote><p>　　<strong>【注意</strong>】
-　　输入的十六进制数不会有前导0，比如012A。
-　　输出的八进制数也不能有前导0。</p>
-
-<p><strong>样例输入</strong>
-　　2
-　　39
-　　123ABC</p>
-
-<p><strong>样例输出</strong>
-　　71
-　　4435274</p>
-
-<p>　　<strong>【提示</strong>】
-　　先将十六进制数转换成某进制数，再由某进制数转换成八进制。</p></blockquote>
-
-<p>这道题目的关键在于处理的数据位数，题目要求转换的十六进制数长度不超过十万位，十万位的十六进制数据是不可能由常规的数据类型来存储，只能存储为字符串类型。把输入存储为字符串类型后，就可以对其进行转换了，转换有以下几种思路：</p>
-
-<p>一、将字符串中的每一位十六进制数转换为二进制数，再3位3位得将二进制数组合成八进制输出，这也是题目hints的思路，网上大多数都是以此为解。</p>
-
-<p>二、第二个思路就是我自己所想的了，剑走偏锋，另辟蹊径。主要是：由于一位十六进制数的二进制为是四位，而八进制的二进制为是三位，所以3个十六进制数可以转换为4个八进制数。所以可以对输入的十六进制字符串3位3位得进行处理，转换为int类型的值，再在输出时利用规则漏洞<code>cout&lt;&lt;oct&lt;&lt;value;</code> 直接输出这3位十六进制数的八进制表示。这种方法算是一种“凑输出”的“作弊”手段吧，但是这毕竟是做题，而且算法结果确实能够提高效率，故不失为一种好方法。</p>
-
-<h3>算法细节：</h3>
-
-<p>前缀数的处理：</p>
-
-<p>由于是对输入字符串的每3位进行处理，但是字符串位数不一定是3的倍数，所以需对字符串前面几个前缀数字进行特殊处理。</p>
-
-<p>容易忽略的一点就是，在第二种方法中对字符串后面的每次三位处理的过程中由于是直接输出3位十六进制数的（先转换成int型）八进制表示，所以有可能出现漏输出0位的情况（如把0x1FF输出成“777”，正确的应该输出“0777”）为避免漏位，故需对该值进行分情况处理。我就是在这里摔了跤，忽略了细节。。。。</p>
-
-<p>思路一源码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;string&gt;</span>
-</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">string</span> <span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">;</span><span class="c1">//s1为输入的原始的十六进制串，s2为转化成的二进制串</span>
-</span><span class='line'>        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">s1</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">s2</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="c1">//初始化</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">s1</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//遍历，字符串上加上每一位</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">switch</span><span class="p">(</span><span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;0&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0000&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;1&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0001&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;2&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0010&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;3&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0011&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;4&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0100&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;5&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0101&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;6&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0110&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;7&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;0111&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;8&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1000&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;9&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1001&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;A&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1010&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;B&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1011&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;C&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1100&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;D&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1101&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;E&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1110&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">case</span> <span class="sc">&#39;F&#39;</span><span class="o">:</span><span class="n">s2</span><span class="o">+=</span><span class="s">&quot;1111&quot;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">default</span><span class="o">:</span><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="n">s2</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//三个二进制为一位八进制，二进制串前面补0，确保二进制串的长度为3的倍数</span>
-</span><span class='line'>            <span class="n">s2</span><span class="o">=</span><span class="s">&quot;00&quot;</span><span class="o">+</span><span class="n">s2</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">s2</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="o">+</span><span class="n">s2</span><span class="p">;</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">flag</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//对前缀数字的处理</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">s2</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="n">i</span><span class="o">+=</span><span class="mi">3</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">flag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//忽略前导0</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">num</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是网上一博主的源码，比较具有代表性。</p>
-
-<p>思路二源码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="c1">//#include &lt;string&gt;</span>
-</span><span class='line'><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span><span class='line'><span class="kt">int</span> <span class="nf">str2int</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&gt;=</span><span class="sc">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>   <span class="c1">//for A==10</span>
-</span><span class='line'>    <span class="k">else</span> <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span><span class='line'>    <span class="c1">//int str2int(char c);</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">string</span> <span class="n">str</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">strLength</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">prex</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span><span class='line'>        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">strLength</span><span class="o">=</span><span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>        <span class="c1">//value=0;</span>
-</span><span class='line'>        <span class="n">prex</span><span class="o">=</span><span class="n">strLength</span><span class="o">%</span><span class="mi">3</span><span class="p">;</span>
-</span><span class='line'>        <span class="c1">//以下是对前面几个数字对特殊处理</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">prex</span><span class="o">==</span><span class="mi">2</span><span class="p">){</span>
-</span><span class='line'>            <span class="n">value</span><span class="o">=</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">16</span><span class="o">+</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-</span><span class='line'>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">oct</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">prex</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
-</span><span class='line'>            <span class="n">value</span><span class="o">=</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">oct</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">for</span> <span class="p">(;</span><span class="n">prex</span><span class="o">&lt;</span><span class="n">strLength</span><span class="p">;</span><span class="n">prex</span><span class="o">+=</span><span class="mi">3</span><span class="p">){</span>
-</span><span class='line'>            <span class="c1">//每3位处理</span>
-</span><span class='line'>            <span class="n">value</span><span class="o">=</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">prex</span><span class="p">])</span><span class="o">*</span><span class="mi">16</span><span class="o">*</span><span class="mi">16</span><span class="o">+</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">prex</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mi">16</span><span class="o">+</span><span class="n">str2int</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">prex</span><span class="o">+</span><span class="mi">2</span><span class="p">]);</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">prex</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="c1">//补0以防止漏位</span>
-</span><span class='line'>                <span class="c1">// 0777的十进制表示为512，0077为 63 ，0007为 7</span>
-</span><span class='line'>                <span class="c1">// 故分别补0</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="o">&lt;</span><span class="mi">512</span><span class="o">&amp;&amp;</span><span class="n">value</span><span class="o">&gt;</span><span class="mi">63</span><span class="p">)</span>
-</span><span class='line'>                    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="o">&lt;=</span><span class="mi">63</span><span class="o">&amp;&amp;</span><span class="n">value</span><span class="o">&gt;</span><span class="mi">7</span><span class="p">)</span>
-</span><span class='line'>                    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;00&quot;</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="o">&lt;=</span><span class="mi">7</span><span class="p">)</span>
-</span><span class='line'>                    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;000&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">oct</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>两种方法输入系统的结果如下，方法二为第一条。</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1flt25pxwe7j30vc0680to.jpg" alt="对比" /></p>
-
-<p>可见方法二在代码长度，cpu使用时间和内存使用上都比方法一优越。</p>
-
-<p>但是这只是一个浅显的对比，两种算法都没有优化，在此仅提供一种思路，没有优劣之分。。。。。。。</p>
-
-<h2>反思</h2>
-
-<p>1、细节之处一定要多注意。</p>
-
-<p>2、对蓝桥杯的输入输出的判罚机制有了更多了解，原来可以不用把输入全部输进去再输出结果，如本方法中的源码一般输入一条，输出一条也是可以的。</p>
-
-<p>3、对本题方法一中的str.Length() 的 i为int型有点疑惑，因为之前总结出的蓝桥杯的编译系统为8位或16位，int类型应该存储不下十万这么大的数才对，但此处证明可以，有些疑惑，先挖个坑，到时候填。。。。。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[十六进制转十进制]]></title>
-    <link href="https://mrfant.github.io/blog/2017/11/24/Hex2Dec/"/>
-    <updated>2017-11-24T17:19:52+08:00</updated>
-    <id>https://mrfant.github.io/blog/2017/11/24/Hex2Dec</id>
-    <content type="html"><![CDATA[<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flt24b3b6vj30zu0d2dhu.jpg" alt="问题描述" /></p>
-
-<blockquote><p>问题描述</p>
-
-<p>从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。
-　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p></blockquote>
-
-<!-- more -->
-
-
-<p><strong>code</strong>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span><span class='line'><span class="kt">int</span>
-</span><span class='line'><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">hex</span><span class="o">&gt;&gt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">dec</span><span class="o">&lt;&lt;</span><span class="n">value</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>题目本身不提，只是发现一个奇怪的情况：</p>
-
-<p>测评程序测试一个四十亿的值时，显示出错。自然，在这种大数问题中我肯定考虑到了类型的范围的问题，所以，开始我使用的<code>value</code>变量是<code>Long</code>类型，然后惊奇地发现<code>Long</code>类型居然也无法容下这个四十亿的数，只有换成<code>unsigned Long</code>类型才能容纳。</p>
-
-<p>一阵迷糊后才明白原来是因为蓝桥的测评环境与我本地的环境不同导致的。在不同位数的编译器环境中，int，long等类型占用的空间并不一样，c语言标准并没有严格规定，所以这可能会出现某些计算机中Long类型和其他计算机的int类型同样范围的情况。</p>
-
-<p>这里先挖个坑，后面学习研究到的时候再来深入探讨。。。。。</p>
 ]]></content>
   </entry>
   

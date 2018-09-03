@@ -2,6 +2,42 @@
 <articles>
 
 <article>
+    <title>MYSQL外键(Foreign Key)的使用例子[转载]</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/mysqlwai-jian-foreign-key-de-shi-yong-li-zi/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>使用 Java8 Optional 的正确姿势[转载]</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/proper-ways-of-using-java8-optional/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>Spring JPA的@GeneratedValue注解</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/spring-jpade-at-generatedvaluezhu-jie/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>关于jpa实体关系映射Cascade权限的相关笔记</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/guan-yu-jpashi-ti-guan-xi-ying-she-cascadequan-xian-de-xiang-guan-bi-ji/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>Spring jpa执行时的一点小问题</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/spring-jpazhi-xing-shi-de-yi-dian-xiao-wen-ti/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
+    <title>RequestDispatcher请求调度接口详解</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/requestdispatcherqing-qiu-diao-du-jie-kou-xiang-jie/</url>
+    <date>2018-09-03</date>
+</article>
+
+<article>
     <title>Spring Security注销logout操作解析</title>
     <url>https://mrfant.github.io/blog/2018/09/03/spring-securityzhu-xiao-logoutcao-zuo-jie-xi/</url>
     <date>2018-09-03</date>
@@ -20,8 +56,8 @@
 </article>
 
 <article>
-    <title>php连接数据库实的一个不起眼bug</title>
-    <url>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-%5B%3F%5D-ge-bu-qi-yan-bug/</url>
+    <title>php连接数据库时的一个不起眼bug</title>
+    <url>https://mrfant.github.io/blog/2018/09/03/phplian-jie-shu-ju-ku-shi-de-yi-ge-bu-qi-yan-bug/</url>
     <date>2018-09-03</date>
 </article>
 
